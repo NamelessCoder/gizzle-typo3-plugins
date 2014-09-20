@@ -1,0 +1,26 @@
+{
+    "name": "namelesscoder/gizzle-typo3-plugins",
+    "description": "Gizzle plugins for running various tasks on repositories which contain TYPO3 extensions",
+    "license": "GPLv3",
+    "authors": [
+        {
+            "name": "Claus Due",
+            "email": "claus@namelesscoder.net"
+        }
+    ],
+	"autoload": {
+		"psr-4": {
+			"NamelessCoder\\GizzleTYPO3Plugins\\Tests\\Fixtures\\": "tests/fixtures/NamelessCoder/GizzleTYPO3Plugins/",
+			"NamelessCoder\\GizzleTYPO3Plugins\\Tests\\Unit\\": "tests/unit/NamelessCoder/GizzleTYPO3Plugins/",
+			"NamelessCoder\\GizzleTYPO3Plugins\\": "src/NamelessCoder/GizzleTYPO3Plugins/"
+		}
+	},
+    "minimum-stability": "dev",
+	"require-dev": {
+		"namelesscoder/gizzle": "dev-master",
+		"phpunit/phpunit": "4.1.*"
+	},
+    "require": {
+
+    }
+}
