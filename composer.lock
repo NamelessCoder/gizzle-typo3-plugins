@@ -4,9 +4,46 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "59ea9864ed84cb0fb9de0262d6d60085",
+    "hash": "625f256d11d8e546fcc55bc825dfb574",
     "packages": [
-
+        {
+            "name": "namelesscoder/gizzle",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/NamelessCoder/gizzle.git",
+                "reference": "1b2a1fd9c112b827b4b4bbaf4aa30e2c39a36b7a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/NamelessCoder/gizzle/zipball/1b2a1fd9c112b827b4b4bbaf4aa30e2c39a36b7a",
+                "reference": "1b2a1fd9c112b827b4b4bbaf4aa30e2c39a36b7a",
+                "shasum": ""
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.1.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "NamelessCoder\\Gizzle\\Tests\\Fixtures\\": "tests/fixtures/NamelessCoder/Gizzle/",
+                    "NamelessCoder\\Gizzle\\Tests\\Unit\\": "tests/unit/NamelessCoder/Gizzle/",
+                    "NamelessCoder\\Gizzle\\": "src/NamelessCoder/Gizzle/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPLv3"
+            ],
+            "authors": [
+                {
+                    "name": "Claus Due",
+                    "email": "claus@namelesscoder.net"
+                }
+            ],
+            "description": "GitHub Webhook Listener with plugin-based API for creating your own triggerered actions",
+            "time": "2014-09-20 21:04:38"
+        }
     ],
     "packages-dev": [
         {
@@ -707,9 +744,9 @@
 
     ],
     "minimum-stability": "dev",
-    "stability-flags": [
-
-    ],
+    "stability-flags": {
+        "namelesscoder/gizzle": 20
+    },
     "prefer-stable": false,
     "platform": [
 
