@@ -4,6 +4,9 @@ namespace NamelessCoder\GizzleTYPO3Plugins\GizzlePlugins;
 use NamelessCoder\Gizzle\Payload;
 use NamelessCoder\Gizzle\PluginInterface;
 
+/**
+ * Class ExtensionRepositoryReleasePlugin
+ */
 class ExtensionRepositoryReleasePlugin implements PluginInterface {
 
 	/**

@@ -3,6 +3,9 @@ namespace NamelessCoder\GizzleTYPO3Plugins\GizzlePlugins;
 
 use NamelessCoder\Gizzle\PluginListInterface;
 
+/**
+ * Class PluginList
+ */
 class PluginList implements PluginListInterface {
 
 	/**
