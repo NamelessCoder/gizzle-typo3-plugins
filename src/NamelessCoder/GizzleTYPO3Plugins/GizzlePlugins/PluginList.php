@@ -9,14 +9,40 @@ use NamelessCoder\Gizzle\PluginListInterface;
 class PluginList implements PluginListInterface {
 
 	/**
+	 * @var array
+	 */
+	protected $settings = array();
+
+	/**
+	 * Initialize the plugin with an array of settings.
+	 *
+	 * @param array $settings
+	 * @return void
+	 */
+	public function initialize(array $settings) {
+		$this->settings = $settings;
+	}
+
+	/**
 	 * Get all class names of plugins delivered from implementer package.
 	 *
 	 * @return string[]
 	 */
 	public function getPluginClassNames() {
-		return array(
-			'NamelessCoder\\GizzleTYPO3Plugins\\GizzlePlugins\\ExtensionRepositoryReleasePlugin'
-		);
+		$plugins = array();
+		if (TRUE === $this->isEnabled('NamelessCoder\\GizzleTYPO3Plugins\\GizzlePlugins\\ExtensionRepositoryReleasePlugin')) {
+			$plugins[] = 'NamelessCoder\\GizzleTYPO3Plugins\\GizzlePlugins\\ExtensionRepositoryReleasePlugin';
+		}
+		return $plugins;
+	}
+
+	/**
+	 * @param string $class
+	 * @return boolean
+	 */
+	protected function isEnabled($class) {
+		$class = 'NamelessCoder\\GizzleTYPO3Plugins\\GizzlePlugins\\ExtensionRepositoryReleasePlugin';
+		return (boolean) TRUE === isset($this->settings[$class]['enabled']) ? $this->settings[$class]['enabled'] : TRUE;
 	}
 
 }
