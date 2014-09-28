@@ -1,5 +1,5 @@
 <?php
-namespace NamelessCoder\GizzleTYPO3Plugins\GizzlePlugins;
+namespace NamelessCoder\GizzleTYPO3Plugins\Tests\Unit\GizzlePlugins;
 
 /**
  * Class ExtensionRepositoryReleasePluginTest

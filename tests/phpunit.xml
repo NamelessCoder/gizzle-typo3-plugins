@@ -13,7 +13,7 @@
          strict="false"
          verbose="false">
     <testsuites>
-        <testsuite name="gizzle">
+        <testsuite name="gizzle-typo3-plugins">
             <directory>.</directory>
         </testsuite>
     </testsuites>
@@ -21,7 +21,7 @@
         <whitelist>
             <addUncoveredFilesFromWhitelist>true</addUncoveredFilesFromWhitelist>
             <processUncoveredFilesFromWhitelist>true</processUncoveredFilesFromWhitelist>
-            <directory>../src/NamelessCoder/Gizzle</directory>
+            <directory>../src/NamelessCoder/GizzleTYPO3Plugins/</directory>
         </whitelist>
     </filter>
 </phpunit>
