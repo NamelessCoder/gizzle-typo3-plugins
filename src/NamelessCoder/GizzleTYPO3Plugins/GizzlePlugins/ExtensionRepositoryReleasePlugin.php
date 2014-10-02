@@ -4,6 +4,8 @@ namespace NamelessCoder\GizzleTYPO3Plugins\GizzlePlugins;
 use NamelessCoder\Gizzle\AbstractPlugin;
 use NamelessCoder\Gizzle\Payload;
 use NamelessCoder\Gizzle\PluginInterface;
+use NamelessCoder\GizzleGitPlugins\GizzlePlugins\ClonePlugin;
+use NamelessCoder\GizzleGitPlugins\GizzlePlugins\PullPlugin;
 use NamelessCoder\TYPO3RepositoryClient\ExtensionUploadPacker;
 use NamelessCoder\TYPO3RepositoryClient\Connection;
 use NamelessCoder\TYPO3RepositoryClient\Uploader;
@@ -43,26 +45,47 @@ class ExtensionRepositoryReleasePlugin extends AbstractPlugin implements PluginI
 	 */
 	public function process(Payload $payload) {
 		$sha1 = $payload->getHead()->getId();
-		// validation: credentials file and local directory path.
-		$credentialsFile = $this->getSettingValue(self::OPTION_CREDENTIALSFILE, GIZZLE_HOME . self::CREDENTIALS_FILE);
-		$this->validateCredentialsFile($credentialsFile);
-		$directory = $this->getSettingValue(self::OPTION_DIRECTORY);
-		$directory = rtrim($directory, '/') . '/';
-		$directory .= $sha1 . '/' . $payload->getRepository()->getName();
-		$this->createWorkingDirectory($directory);
-		$this->validateDirectory($directory);
+
 		// additional settings not requiring validation.
 		$branch = $this->getSettingValue(self::OPTION_BRANCH, $payload->getRepository()->getMasterBranch());
 		$url = $this->getSettingValue(self::OPTION_URL, $payload->getRepository()->getUrl());
 		$comment = $this->getSettingValue(self::OPTION_COMMENT, self::DEFAULT_COMMENT);
-		$comment = sprintf($comment, $branch, $url);
-		// a large, properly formatted data file.
+
+		// validation: credentials file and local directory path.
+		$directory = $this->getSettingValue(self::OPTION_DIRECTORY);
+		$directory = rtrim($directory, '/') . '/';
+		$directory .= $sha1 . '/' . $payload->getRepository()->getName();
+		$credentialsFile = $this->getSettingValue(self::OPTION_CREDENTIALSFILE, GIZZLE_HOME . self::CREDENTIALS_FILE);
+		$this->validateCredentialsFile($credentialsFile);
 		list ($username, $password) = $this->readUploadCredentials($credentialsFile);
+
+		// initializing build directory and cloning source
+		$clone = $this->getGitClonePlugin();
+		$clone->initialize(array(
+			ClonePlugin::OPTION_BRANCH => $branch,
+			ClonePlugin::OPTION_DEPTH => 1,
+			ClonePlugin::OPTION_SINGLE => TRUE
+		));
+		$this->createWorkingDirectory($directory);
+		$this->validateDirectory($directory);
+		$clone->process($payload);
+		$comment = sprintf($comment, $branch, $url);
+
+		// a large, properly formatted data file.
 		$output = $this->getUploader()->upload($directory, $username, $password, $comment);
+
+		// cleanup and messages
 		if (TRUE === (boolean) $this->getSettingValue(self::OPTION_REMOVEBUILD, FALSE)) {
 			$this->removeWorkingDirectory($this->getSettingValue(self::OPTION_DIRECTORY), $sha1);
 		}
 		$payload->getResponse()->addOutputFromPlugin($this, $output);
+	}
+
+	/**
+	 * @return ClonePlugin
+	 */
+	protected function getGitClonePlugin() {
+		return new ClonePlugin();
 	}
 
 	/**

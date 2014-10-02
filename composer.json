@@ -18,6 +18,7 @@
     "minimum-stability": "dev",
 	"require": {
 		"namelesscoder/gizzle": "1.0.*",
+		"namelesscoder/gizzle-git-plugins": "dev-master",
 		"namelesscoder/typo3-repository-client": "dev-master"
 	},
 	"require-dev": {

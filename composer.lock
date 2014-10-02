@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "ca1b1ee4f47f5aad1672b7b579fb9074",
+    "hash": "7d03bb4ebd65c268f2e4a97a629d5eef",
     "packages": [
         {
             "name": "milo/github-api",
@@ -99,6 +99,48 @@
                 "webhook"
             ],
             "time": "2014-09-29 18:27:26"
+        },
+        {
+            "name": "namelesscoder/gizzle-git-plugins",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/NamelessCoder/gizzle-git-plugins.git",
+                "reference": "d69827ac56c10effcce6248ea1ec61126549b02d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/NamelessCoder/gizzle-git-plugins/zipball/d69827ac56c10effcce6248ea1ec61126549b02d",
+                "reference": "d69827ac56c10effcce6248ea1ec61126549b02d",
+                "shasum": ""
+            },
+            "require": {
+                "namelesscoder/gizzle": "1.0.*"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.3.*",
+                "satooshi/php-coveralls": "dev-master"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "NamelessCoder\\GizzleGitPlugins\\Tests\\Fixtures\\": "tests/fixtures/NamelessCoder/GizzleGitPlugins/",
+                    "NamelessCoder\\GizzleGitPlugins\\Tests\\Unit\\": "tests/unit/NamelessCoder/GizzleGitPlugins/",
+                    "NamelessCoder\\GizzleGitPlugins\\": "src/NamelessCoder/GizzleGitPlugins/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPLv3"
+            ],
+            "authors": [
+                {
+                    "name": "Claus Due",
+                    "email": "claus@namelesscoder.net"
+                }
+            ],
+            "description": "Gizzle plugins for running Git operations",
+            "time": "2014-10-02 00:46:30"
         },
         {
             "name": "namelesscoder/typo3-repository-client",
@@ -1392,6 +1434,7 @@
     ],
     "minimum-stability": "dev",
     "stability-flags": {
+        "namelesscoder/gizzle-git-plugins": 20,
         "namelesscoder/typo3-repository-client": 20,
         "satooshi/php-coveralls": 20
     },
