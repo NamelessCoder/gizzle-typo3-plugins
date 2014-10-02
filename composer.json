@@ -1,7 +1,7 @@
 {
     "name": "namelesscoder/gizzle-typo3-plugins",
     "description": "Gizzle plugins for running various tasks on repositories which contain TYPO3 extensions",
-    "license": "GPLv3",
+    "license": "MIT",
     "authors": [
         {
             "name": "Claus Due",
@@ -17,7 +17,8 @@
 	},
     "minimum-stability": "dev",
 	"require": {
-		"namelesscoder/gizzle": "1.0.*"
+		"namelesscoder/gizzle": "1.0.*",
+		"namelesscoder/typo3-repository-client": "dev-master"
 	},
 	"require-dev": {
 		"phpunit/phpunit": "4.3.*"

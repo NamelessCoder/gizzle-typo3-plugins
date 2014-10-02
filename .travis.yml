@@ -7,6 +7,10 @@ php:
 
 before_script:
   - composer install
+  - mkdir -p build/logs
 
 script:
   - ./vendor/phpunit/phpunit/phpunit -c ./tests/phpunit.xml
+
+after_script:
+  - php vendor/bin/coveralls
