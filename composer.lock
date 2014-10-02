@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "7d03bb4ebd65c268f2e4a97a629d5eef",
+    "hash": "208870322b057623b1f65c25779bfb83",
     "packages": [
         {
             "name": "milo/github-api",
@@ -51,16 +51,16 @@
         },
         {
             "name": "namelesscoder/gizzle",
-            "version": "1.0.3",
+            "version": "1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/NamelessCoder/gizzle.git",
-                "reference": "ba8579113a6c28b99cfe4604df35a8e9a2080fbb"
+                "reference": "6035d525bd0d92c8861aa1236f2bd0158eec484f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/NamelessCoder/gizzle/zipball/ba8579113a6c28b99cfe4604df35a8e9a2080fbb",
-                "reference": "ba8579113a6c28b99cfe4604df35a8e9a2080fbb",
+                "url": "https://api.github.com/repos/NamelessCoder/gizzle/zipball/6035d525bd0d92c8861aa1236f2bd0158eec484f",
+                "reference": "6035d525bd0d92c8861aa1236f2bd0158eec484f",
                 "shasum": ""
             },
             "require": {
@@ -98,7 +98,7 @@
                 "plugin",
                 "webhook"
             ],
-            "time": "2014-09-29 18:27:26"
+            "time": "2014-10-02 22:11:13"
         },
         {
             "name": "namelesscoder/gizzle-git-plugins",
@@ -106,16 +106,16 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/NamelessCoder/gizzle-git-plugins.git",
-                "reference": "d69827ac56c10effcce6248ea1ec61126549b02d"
+                "reference": "5835870d1ba8cbbf3ef6a9965ce40e472a3796c1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/NamelessCoder/gizzle-git-plugins/zipball/d69827ac56c10effcce6248ea1ec61126549b02d",
-                "reference": "d69827ac56c10effcce6248ea1ec61126549b02d",
+                "url": "https://api.github.com/repos/NamelessCoder/gizzle-git-plugins/zipball/5835870d1ba8cbbf3ef6a9965ce40e472a3796c1",
+                "reference": "5835870d1ba8cbbf3ef6a9965ce40e472a3796c1",
                 "shasum": ""
             },
             "require": {
-                "namelesscoder/gizzle": "1.0.*"
+                "namelesscoder/gizzle": "1.1.*"
             },
             "require-dev": {
                 "phpunit/phpunit": "4.3.*",
@@ -140,7 +140,7 @@
                 }
             ],
             "description": "Gizzle plugins for running Git operations",
-            "time": "2014-10-02 00:46:30"
+            "time": "2014-10-02 22:13:58"
         },
         {
             "name": "namelesscoder/typo3-repository-client",
@@ -148,12 +148,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/NamelessCoder/typo3-repository-client.git",
-                "reference": "c8869f160b24b4cb8313a099d26baafcf0937cbc"
+                "reference": "e161d4d5dd68524006589cfe108a8d985d29e1d2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/NamelessCoder/typo3-repository-client/zipball/c8869f160b24b4cb8313a099d26baafcf0937cbc",
-                "reference": "c8869f160b24b4cb8313a099d26baafcf0937cbc",
+                "url": "https://api.github.com/repos/NamelessCoder/typo3-repository-client/zipball/e161d4d5dd68524006589cfe108a8d985d29e1d2",
+                "reference": "e161d4d5dd68524006589cfe108a8d985d29e1d2",
                 "shasum": ""
             },
             "require-dev": {
@@ -179,7 +179,7 @@
                 }
             ],
             "description": "Client for interacting with the official TYPO3 Extension Repository (TER). Contains API and CLI scripts.",
-            "time": "2014-10-01 23:04:17"
+            "time": "2014-10-02 13:36:57"
         },
         {
             "name": "symfony/yaml",
