@@ -13,12 +13,22 @@ use NamelessCoder\TYPO3RepositoryClient\Uploader;
  */
 class ExtensionRepositoryReleasePlugin extends AbstractPlugin implements PluginInterface {
 
+	const OPTION_CREDENTIALSFILE = 'credentialsFile';
 	const OPTION_DIRECTORY = 'directory';
 	const OPTION_COMMENT = 'comment';
 	const OPTION_BRANCH = 'branch';
 	const OPTION_URL = 'url';
 	const DEFAULT_COMMENT = 'Automatic release built from Github branch %s. See %s for change log.';
 	const CREDENTIALS_FILE = '.typo3credentials';
+
+	/**
+	 * @param Payload $payload
+	 * @return boolean
+	 */
+	public function trigger(Payload $payload) {
+		$branch = $this->getSettingValue(self::OPTION_BRANCH, $payload->getRepository()->getMasterBranch());
+		return 'refs/heads/' . $branch === $payload->getRef();
+	}
 
 	/**
 	 * Upload the extension contained in repository to
@@ -42,7 +52,7 @@ class ExtensionRepositoryReleasePlugin extends AbstractPlugin implements PluginI
 		$comment = $this->getSettingValue(self::OPTION_COMMENT, self::DEFAULT_COMMENT);
 		$comment = sprintf($comment, $branch, $url);
 		// a large, properly formatted data file.
-		list ($username, $password) = $this->readUploadCredentials();
+		list ($username, $password) = $this->readUploadCredentials($credentialsFile);
 		$output = $this->getUploader()->upload($directory, $username, $password, $comment);
 		$payload->getResponse()->addOutputFromPlugin($this, $output);
 	}

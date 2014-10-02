@@ -1,11 +1,32 @@
 <?php
 namespace NamelessCoder\GizzleTYPO3Plugins\Tests\Unit\GizzlePlugins;
+
+use NamelessCoder\Gizzle\Repository;
 use NamelessCoder\GizzleTYPO3Plugins\GizzlePlugins\ExtensionRepositoryReleasePlugin;
+use org\bovigo\vfs\vfsStreamWrapper;
+use org\bovigo\vfs\vfsStreamDirectory;
+use org\bovigo\vfs\vfsStream;
 
 /**
  * Class ExtensionRepositoryReleasePluginTest
  */
 class ExtensionRepositoryReleasePluginTest extends \PHPUnit_Framework_TestCase {
+
+	public static function setUpBeforeClass() {
+		define('GIZZLE_HOME', '.');
+	}
+
+	public function testReadCredentialsFile() {
+		vfsStreamWrapper::register();
+		vfsStreamWrapper::setRoot(new vfsStreamDirectory('temp'));
+		$file = vfsStream::url('temp/typo3credentials');
+		file_put_contents($file, 'username:password');
+		$plugin = new ExtensionRepositoryReleasePlugin();
+		$method = new \ReflectionMethod($plugin, 'readUploadCredentials');
+		$method->setAccessible(TRUE);
+		$result = $method->invoke($plugin, $file);
+		$this->assertEquals(array('username', 'password'), $result);
+	}
 
 	public function testGetUploaderReturnsUploader() {
 		$plugin = new ExtensionRepositoryReleasePlugin();
@@ -60,6 +81,68 @@ class ExtensionRepositoryReleasePluginTest extends \PHPUnit_Framework_TestCase {
 		$method = new \ReflectionMethod($plugin, 'validateCredentialsFile');
 		$method->setAccessible(TRUE);
 		$method->invoke($plugin, __FILE__);
+	}
+
+	public function testProcess() {
+		$settings = array(
+			ExtensionRepositoryReleasePlugin::OPTION_DIRECTORY => '.',
+			ExtensionRepositoryReleasePlugin::OPTION_URL => 'url',
+			ExtensionRepositoryReleasePlugin::OPTION_BRANCH => 'master',
+			ExtensionRepositoryReleasePlugin::OPTION_COMMENT => 'comment',
+		);
+		$plugin = $this->getMock(
+			'NamelessCoder\\GizzleTYPO3Plugins\\GizzlePlugins\\ExtensionRepositoryReleasePlugin',
+			array('validateCredentialsFile', 'getUploader', 'readUploadCredentials')
+		);
+		$repository = new Repository();
+		$repository->setMasterBranch('master');
+		$repository->setUrl($settings[ExtensionRepositoryReleasePlugin::OPTION_URL]);
+		$response = $this->getMock('NamelessCoder\\Gizzle\\Response', array('addOutputFromPlugin'));
+		$response->expects($this->once())->method('addOutputFromPlugin')->with($plugin, array());
+		$uploader = $this->getMock('NamelessCoder\\TYPO3RepositoryClient\\Uploader', array('upload'));
+		$uploader->expects($this->once())->method('upload')->with(
+			$settings[ExtensionRepositoryReleasePlugin::OPTION_DIRECTORY],
+			'username',
+			'password',
+			$settings[ExtensionRepositoryReleasePlugin::OPTION_COMMENT]
+		)->will($this->returnValue(array()));
+		$payload = $this->getMock('NamelessCoder\\Gizzle\\Payload', array('getRepository', 'getResponse'), array(), '', FALSE);
+		$payload->expects($this->any())->method('getRepository')->will($this->returnValue($repository));
+		$payload->expects($this->any())->method('getResponse')->will($this->returnValue($response));
+		$plugin->expects($this->once())->method('validateCredentialsFile');
+		$plugin->expects($this->once())->method('getUploader')->will($this->returnValue($uploader));
+		$plugin->expects($this->once())->method('readUploadCredentials')->will($this->returnValue(array('username', 'password')));
+		$plugin->initialize($settings);
+		$plugin->process($payload);
+	}
+
+	/**
+	 * @param $branch
+	 * @param $payloadBranch
+	 * @param $expected
+	 * @dataProvider getTriggerValues
+	 */
+	public function testTrigger($branch, $payloadBranch, $expected) {
+		$payload = $this->getMock('NamelessCoder\\Gizzle\\Payload', array('getRepository', 'getRef'), array(), '', FALSE);
+		$repository = new Repository();
+		$repository->setMasterBranch('master');
+		$payload->expects($this->any())->method('getRepository')->will($this->returnValue($repository));
+		$payload->expects($this->any())->method('getRef')->will($this->returnValue('refs/heads/' . $payloadBranch));
+		$plugin = new ExtensionRepositoryReleasePlugin();
+		$plugin->initialize(array(
+			ExtensionRepositoryReleasePlugin::OPTION_BRANCH => $branch
+		));
+		$this->assertEquals($expected, $plugin->trigger($payload));
+	}
+
+	/**
+	 * @return array
+	 */
+	public function getTriggerValues() {
+		return array(
+			array('master', 'master', TRUE),
+			array('master', 'development', FALSE)
+		);
 	}
 
 	/**
