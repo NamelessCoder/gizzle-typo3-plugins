@@ -1,6 +1,7 @@
 <?php
 namespace NamelessCoder\GizzleTYPO3Plugins\Tests\Unit\GizzlePlugins;
 
+use NamelessCoder\Gizzle\Commit;
 use NamelessCoder\Gizzle\Repository;
 use NamelessCoder\GizzleTYPO3Plugins\GizzlePlugins\ExtensionRepositoryReleasePlugin;
 use org\bovigo\vfs\vfsStreamWrapper;
@@ -18,7 +19,7 @@ class ExtensionRepositoryReleasePluginTest extends \PHPUnit_Framework_TestCase {
 
 	public function testReadCredentialsFile() {
 		vfsStreamWrapper::register();
-		vfsStreamWrapper::setRoot(new vfsStreamDirectory('temp'));
+		vfsStreamWrapper::setRoot(new vfsStreamDirectory('temp', 0777));
 		$file = vfsStream::url('temp/typo3credentials');
 		file_put_contents($file, 'username:password');
 		$plugin = new ExtensionRepositoryReleasePlugin();
@@ -84,11 +85,14 @@ class ExtensionRepositoryReleasePluginTest extends \PHPUnit_Framework_TestCase {
 	}
 
 	public function testProcess() {
+		vfsStreamWrapper::register();
+		vfsStreamWrapper::setRoot(new vfsStreamDirectory('temp', 0777));
 		$settings = array(
-			ExtensionRepositoryReleasePlugin::OPTION_DIRECTORY => '.',
+			ExtensionRepositoryReleasePlugin::OPTION_DIRECTORY => vfsStream::url('temp'),
 			ExtensionRepositoryReleasePlugin::OPTION_URL => 'url',
 			ExtensionRepositoryReleasePlugin::OPTION_BRANCH => 'master',
 			ExtensionRepositoryReleasePlugin::OPTION_COMMENT => 'comment',
+			ExtensionRepositoryReleasePlugin::OPTION_REMOVEBUILD => TRUE
 		);
 		$plugin = $this->getMock(
 			'NamelessCoder\\GizzleTYPO3Plugins\\GizzlePlugins\\ExtensionRepositoryReleasePlugin',
@@ -96,19 +100,23 @@ class ExtensionRepositoryReleasePluginTest extends \PHPUnit_Framework_TestCase {
 		);
 		$repository = new Repository();
 		$repository->setMasterBranch('master');
+		$repository->setName('repository');
 		$repository->setUrl($settings[ExtensionRepositoryReleasePlugin::OPTION_URL]);
+		$head = new Commit();
+		$head->setId('123');
 		$response = $this->getMock('NamelessCoder\\Gizzle\\Response', array('addOutputFromPlugin'));
 		$response->expects($this->once())->method('addOutputFromPlugin')->with($plugin, array());
 		$uploader = $this->getMock('NamelessCoder\\TYPO3RepositoryClient\\Uploader', array('upload'));
 		$uploader->expects($this->once())->method('upload')->with(
-			$settings[ExtensionRepositoryReleasePlugin::OPTION_DIRECTORY],
+			$settings[ExtensionRepositoryReleasePlugin::OPTION_DIRECTORY] . '/' . $head->getId() . '/' . $repository->getName(),
 			'username',
 			'password',
 			$settings[ExtensionRepositoryReleasePlugin::OPTION_COMMENT]
 		)->will($this->returnValue(array()));
-		$payload = $this->getMock('NamelessCoder\\Gizzle\\Payload', array('getRepository', 'getResponse'), array(), '', FALSE);
+		$payload = $this->getMock('NamelessCoder\\Gizzle\\Payload', array('getRepository', 'getHead', 'getResponse'), array(), '', FALSE);
 		$payload->expects($this->any())->method('getRepository')->will($this->returnValue($repository));
 		$payload->expects($this->any())->method('getResponse')->will($this->returnValue($response));
+		$payload->expects($this->any())->method('getHead')->will($this->returnValue($head));
 		$plugin->expects($this->once())->method('validateCredentialsFile');
 		$plugin->expects($this->once())->method('getUploader')->will($this->returnValue($uploader));
 		$plugin->expects($this->once())->method('readUploadCredentials')->will($this->returnValue(array('username', 'password')));

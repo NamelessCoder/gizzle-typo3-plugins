@@ -18,6 +18,7 @@ class ExtensionRepositoryReleasePlugin extends AbstractPlugin implements PluginI
 	const OPTION_COMMENT = 'comment';
 	const OPTION_BRANCH = 'branch';
 	const OPTION_URL = 'url';
+	const OPTION_REMOVEBUILD = 'removeBuild';
 	const DEFAULT_COMMENT = 'Automatic release built from Github branch %s. See %s for change log.';
 	const CREDENTIALS_FILE = '.typo3credentials';
 
@@ -41,10 +42,14 @@ class ExtensionRepositoryReleasePlugin extends AbstractPlugin implements PluginI
 	 * @throws \RuntimeException
 	 */
 	public function process(Payload $payload) {
+		$sha1 = $payload->getHead()->getId();
 		// validation: credentials file and local directory path.
 		$credentialsFile = $this->getSettingValue(self::OPTION_CREDENTIALSFILE, GIZZLE_HOME . self::CREDENTIALS_FILE);
 		$this->validateCredentialsFile($credentialsFile);
 		$directory = $this->getSettingValue(self::OPTION_DIRECTORY);
+		$directory = rtrim($directory, '/') . '/';
+		$directory .= $sha1 . '/' . $payload->getRepository()->getName();
+		$this->createWorkingDirectory($directory);
 		$this->validateDirectory($directory);
 		// additional settings not requiring validation.
 		$branch = $this->getSettingValue(self::OPTION_BRANCH, $payload->getRepository()->getMasterBranch());
@@ -54,7 +59,25 @@ class ExtensionRepositoryReleasePlugin extends AbstractPlugin implements PluginI
 		// a large, properly formatted data file.
 		list ($username, $password) = $this->readUploadCredentials($credentialsFile);
 		$output = $this->getUploader()->upload($directory, $username, $password, $comment);
+		if (TRUE === (boolean) $this->getSettingValue(self::OPTION_REMOVEBUILD, FALSE)) {
+			$this->removeWorkingDirectory($this->getSettingValue(self::OPTION_DIRECTORY), $sha1);
+		}
 		$payload->getResponse()->addOutputFromPlugin($this, $output);
+	}
+
+	/**
+	 * @param string $directory
+	 */
+	protected function createWorkingDirectory($directory) {
+		mkdir($directory, 0755, TRUE);
+	}
+
+	/**
+	 * @param string $directory
+	 * @param string $sha1
+	 */
+	protected function removeWorkingDirectory($directory, $sha1) {
+		system('rm -rf ' . escapeshellarg($directory . '/' . $sha1));
 	}
 
 	/**
