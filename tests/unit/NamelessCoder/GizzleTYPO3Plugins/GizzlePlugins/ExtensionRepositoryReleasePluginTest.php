@@ -109,7 +109,7 @@ class ExtensionRepositoryReleasePluginTest extends \PHPUnit_Framework_TestCase {
 		);
 		$payload = $this->getMock(
 			'NamelessCoder\\Gizzle\\Payload',
-			array('getRepository', 'getHead', 'getResponse'),
+			array('getRepository', 'getHead', 'getResponse', 'getRef'),
 			array(), '', FALSE
 		);
 		$repository = new Repository();
@@ -121,7 +121,7 @@ class ExtensionRepositoryReleasePluginTest extends \PHPUnit_Framework_TestCase {
 		$clone = $this->getMock('NamelessCoder\\GizzleGitPlugins\\GizzlePlugins\\ClonePlugin', array('initialize', 'process'));
 		$clone->expects($this->once())->method('initialize')->with(array(
 			ClonePlugin::OPTION_DIRECTORY => $settings[ExtensionRepositoryReleasePlugin::OPTION_DIRECTORY] . '/123/repository',
-			ClonePlugin::OPTION_BRANCH => $settings[ExtensionRepositoryReleasePlugin::OPTION_BRANCH],
+			ClonePlugin::OPTION_BRANCH => '1.1.1',
 			ClonePlugin::OPTION_DEPTH => 1,
 			ClonePlugin::OPTION_SINGLE => TRUE
 		));
@@ -138,6 +138,7 @@ class ExtensionRepositoryReleasePluginTest extends \PHPUnit_Framework_TestCase {
 		$payload->expects($this->any())->method('getRepository')->will($this->returnValue($repository));
 		$payload->expects($this->any())->method('getResponse')->will($this->returnValue($response));
 		$payload->expects($this->any())->method('getHead')->will($this->returnValue($head));
+		$payload->expects($this->any())->method('getRef')->will($this->returnValue('refs/tags/1.1.1'));
 		$plugin->expects($this->once())->method('getGitClonePlugin')->will($this->returnValue($clone));
 		$plugin->expects($this->once())->method('validateCredentialsFile');
 		$plugin->expects($this->once())->method('getUploader')->will($this->returnValue($uploader));
@@ -148,16 +149,16 @@ class ExtensionRepositoryReleasePluginTest extends \PHPUnit_Framework_TestCase {
 
 	/**
 	 * @param $branch
-	 * @param $payloadBranch
+	 * @param $payloadRef
 	 * @param $expected
 	 * @dataProvider getTriggerValues
 	 */
-	public function testTrigger($branch, $payloadBranch, $expected) {
+	public function testTrigger($branch, $payloadRef, $expected) {
 		$payload = $this->getMock('NamelessCoder\\Gizzle\\Payload', array('getRepository', 'getRef'), array(), '', FALSE);
 		$repository = new Repository();
 		$repository->setMasterBranch('master');
 		$payload->expects($this->any())->method('getRepository')->will($this->returnValue($repository));
-		$payload->expects($this->any())->method('getRef')->will($this->returnValue('refs/heads/' . $payloadBranch));
+		$payload->expects($this->any())->method('getRef')->will($this->returnValue($payloadRef));
 		$plugin = new ExtensionRepositoryReleasePlugin();
 		$plugin->initialize(array(
 			ExtensionRepositoryReleasePlugin::OPTION_BRANCH => $branch
@@ -170,8 +171,9 @@ class ExtensionRepositoryReleasePluginTest extends \PHPUnit_Framework_TestCase {
 	 */
 	public function getTriggerValues() {
 		return array(
-			array('master', 'master', TRUE),
-			array('master', 'development', FALSE)
+			array('master', 'refs/tags/1.1.1', TRUE),
+			array('master', 'refs/heads/development', FALSE),
+			array('development', 'refs/tags/1.1.3', TRUE)
 		);
 	}
 

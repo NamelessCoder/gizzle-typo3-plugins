@@ -29,8 +29,7 @@ class ExtensionRepositoryReleasePlugin extends AbstractPlugin implements PluginI
 	 * @return boolean
 	 */
 	public function trigger(Payload $payload) {
-		$branch = $this->getSettingValue(self::OPTION_BRANCH, $payload->getRepository()->getMasterBranch());
-		return 'refs/heads/' . $branch === $payload->getRef();
+		return 0 === strpos($payload->getRef(), 'refs/tags/');
 	}
 
 	/**
@@ -45,6 +44,7 @@ class ExtensionRepositoryReleasePlugin extends AbstractPlugin implements PluginI
 	 */
 	public function process(Payload $payload) {
 		$sha1 = $payload->getHead()->getId();
+		$tag = substr($payload->getRef(), 10);
 
 		// additional settings not requiring validation.
 		$branch = $this->getSettingValue(self::OPTION_BRANCH, $payload->getRepository()->getMasterBranch());
@@ -63,14 +63,14 @@ class ExtensionRepositoryReleasePlugin extends AbstractPlugin implements PluginI
 		$clone = $this->getGitClonePlugin();
 		$clone->initialize(array(
 			ClonePlugin::OPTION_DIRECTORY => $directory,
-			ClonePlugin::OPTION_BRANCH => $branch,
+			ClonePlugin::OPTION_BRANCH => $tag,
 			ClonePlugin::OPTION_DEPTH => 1,
 			ClonePlugin::OPTION_SINGLE => TRUE
 		));
 		$this->createWorkingDirectory($directory);
 		$this->validateDirectory($directory);
 		$clone->process($payload);
-		$comment = sprintf($comment, $branch, $url);
+		$comment = sprintf($comment, $tag, $url);
 
 		// a large, properly formatted data file.
 		$output = $this->getUploader()->upload($directory, $username, $password, $comment);
