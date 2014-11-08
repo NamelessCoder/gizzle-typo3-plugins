@@ -8,23 +8,23 @@
     "packages": [
         {
             "name": "milo/github-api",
-            "version": "v1.2.1",
+            "version": "v1.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/milo/github-api.git",
-                "reference": "4e61e272ac71cf0420cd17de5b43cf2c04819be2"
+                "reference": "8f0dd499aa1ed381f9917f25919cab6422becb8c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/milo/github-api/zipball/4e61e272ac71cf0420cd17de5b43cf2c04819be2",
-                "reference": "4e61e272ac71cf0420cd17de5b43cf2c04819be2",
+                "url": "https://api.github.com/repos/milo/github-api/zipball/8f0dd499aa1ed381f9917f25919cab6422becb8c",
+                "reference": "8f0dd499aa1ed381f9917f25919cab6422becb8c",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.4.0"
             },
             "require-dev": {
-                "nette/tester": "~1.2.0"
+                "nette/tester": "~1.3.0"
             },
             "suggest": {
                 "ext-curl": "Allows you to use Http\\CurlClient"
@@ -47,24 +47,24 @@
                 }
             ],
             "description": "Github API easy access",
-            "time": "2014-07-09 19:58:30"
+            "time": "2014-10-02 20:57:16"
         },
         {
             "name": "namelesscoder/gizzle",
-            "version": "1.1.0",
+            "version": "1.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/NamelessCoder/gizzle.git",
-                "reference": "6035d525bd0d92c8861aa1236f2bd0158eec484f"
+                "reference": "4ac10067479c3d9ece353d02faf9e49130f52abe"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/NamelessCoder/gizzle/zipball/6035d525bd0d92c8861aa1236f2bd0158eec484f",
-                "reference": "6035d525bd0d92c8861aa1236f2bd0158eec484f",
+                "url": "https://api.github.com/repos/NamelessCoder/gizzle/zipball/4ac10067479c3d9ece353d02faf9e49130f52abe",
+                "reference": "4ac10067479c3d9ece353d02faf9e49130f52abe",
                 "shasum": ""
             },
             "require": {
-                "milo/github-api": "~1.2.1",
+                "milo/github-api": "~1.3.0",
                 "symfony/yaml": "2.5.5"
             },
             "require-dev": {
@@ -98,7 +98,7 @@
                 "plugin",
                 "webhook"
             ],
-            "time": "2014-10-02 22:11:13"
+            "time": "2014-10-17 15:11:14"
         },
         {
             "name": "namelesscoder/gizzle-git-plugins",
@@ -106,12 +106,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/NamelessCoder/gizzle-git-plugins.git",
-                "reference": "5835870d1ba8cbbf3ef6a9965ce40e472a3796c1"
+                "reference": "3cb3a77ff52c52d22c93188c10bfc98bd9db73ee"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/NamelessCoder/gizzle-git-plugins/zipball/5835870d1ba8cbbf3ef6a9965ce40e472a3796c1",
-                "reference": "5835870d1ba8cbbf3ef6a9965ce40e472a3796c1",
+                "url": "https://api.github.com/repos/NamelessCoder/gizzle-git-plugins/zipball/3cb3a77ff52c52d22c93188c10bfc98bd9db73ee",
+                "reference": "3cb3a77ff52c52d22c93188c10bfc98bd9db73ee",
                 "shasum": ""
             },
             "require": {
@@ -140,7 +140,7 @@
                 }
             ],
             "description": "Gizzle plugins for running Git operations",
-            "time": "2014-10-02 22:13:58"
+            "time": "2014-10-11 10:56:19"
         },
         {
             "name": "namelesscoder/typo3-repository-client",
@@ -148,15 +148,16 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/NamelessCoder/typo3-repository-client.git",
-                "reference": "e161d4d5dd68524006589cfe108a8d985d29e1d2"
+                "reference": "adf37e4306cad3774aff74c891cc8ba1ec69a106"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/NamelessCoder/typo3-repository-client/zipball/e161d4d5dd68524006589cfe108a8d985d29e1d2",
-                "reference": "e161d4d5dd68524006589cfe108a8d985d29e1d2",
+                "url": "https://api.github.com/repos/NamelessCoder/typo3-repository-client/zipball/adf37e4306cad3774aff74c891cc8ba1ec69a106",
+                "reference": "adf37e4306cad3774aff74c891cc8ba1ec69a106",
                 "shasum": ""
             },
             "require-dev": {
+                "mikey179/vfsstream": "~1.3.0",
                 "phpunit/phpunit": "4.2.*",
                 "satooshi/php-coveralls": "dev-master"
             },
@@ -179,7 +180,7 @@
                 }
             ],
             "description": "Client for interacting with the official TYPO3 Extension Repository (TER). Contains API and CLI scripts.",
-            "time": "2014-10-02 13:36:57"
+            "time": "2014-11-08 13:27:15"
         },
         {
             "name": "symfony/yaml",
@@ -236,16 +237,16 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/instantiator.git",
-                "reference": "26404e0c90565b614ee76b988b9bc8790d77f590"
+                "reference": "f976e5de371104877ebc89bd8fecb0019ed9c119"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/instantiator/zipball/26404e0c90565b614ee76b988b9bc8790d77f590",
-                "reference": "26404e0c90565b614ee76b988b9bc8790d77f590",
+                "url": "https://api.github.com/repos/doctrine/instantiator/zipball/f976e5de371104877ebc89bd8fecb0019ed9c119",
+                "reference": "f976e5de371104877ebc89bd8fecb0019ed9c119",
                 "shasum": ""
             },
             "require": {
-                "php": "~5.3"
+                "php": ">=5.3,<8.0-DEV"
             },
             "require-dev": {
                 "athletic/athletic": "~0.1.8",
@@ -282,7 +283,7 @@
                 "constructor",
                 "instantiate"
             ],
-            "time": "2014-08-25 15:09:25"
+            "time": "2014-10-13 12:58:55"
         },
         {
             "name": "guzzle/guzzle",
@@ -290,12 +291,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/guzzle3.git",
-                "reference": "d27346b6c8cb6a42092e763f8a2f674dfc560956"
+                "reference": "5e6fb7097efac7180bd75006079144025255eb63"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/guzzle3/zipball/d27346b6c8cb6a42092e763f8a2f674dfc560956",
-                "reference": "d27346b6c8cb6a42092e763f8a2f674dfc560956",
+                "url": "https://api.github.com/repos/guzzle/guzzle3/zipball/5e6fb7097efac7180bd75006079144025255eb63",
+                "reference": "5e6fb7097efac7180bd75006079144025255eb63",
                 "shasum": ""
             },
             "require": {
@@ -374,7 +375,7 @@
                 "rest",
                 "web service"
             ],
-            "time": "2014-09-16 21:19:27"
+            "time": "2014-10-29 23:08:23"
         },
         {
             "name": "mikey179/vfsStream",
@@ -420,12 +421,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "62f8cd539ab2e2c25077aeb5f5ed3209acee3612"
+                "reference": "c3e185a27ae59680237c836caecef66c8bd839a8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/62f8cd539ab2e2c25077aeb5f5ed3209acee3612",
-                "reference": "62f8cd539ab2e2c25077aeb5f5ed3209acee3612",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/c3e185a27ae59680237c836caecef66c8bd839a8",
+                "reference": "c3e185a27ae59680237c836caecef66c8bd839a8",
                 "shasum": ""
             },
             "require": {
@@ -477,7 +478,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2014-09-01 22:04:15"
+            "time": "2014-10-31 10:06:54"
         },
         {
             "name": "phpunit/php-file-iterator",
@@ -667,12 +668,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "9cde063824730fe6f74651520877096af1e1010f"
+                "reference": "fd095e1b99cb5aa26502f6bca85b7643bde31c8b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/9cde063824730fe6f74651520877096af1e1010f",
-                "reference": "9cde063824730fe6f74651520877096af1e1010f",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/fd095e1b99cb5aa26502f6bca85b7643bde31c8b",
+                "reference": "fd095e1b99cb5aa26502f6bca85b7643bde31c8b",
                 "shasum": ""
             },
             "require": {
@@ -683,10 +684,10 @@
                 "ext-spl": "*",
                 "php": ">=5.3.3",
                 "phpunit/php-code-coverage": "~2.0",
-                "phpunit/php-file-iterator": "~1.3.1",
+                "phpunit/php-file-iterator": "~1.3.2",
                 "phpunit/php-text-template": "~1.2",
                 "phpunit/php-timer": "~1.0.2",
-                "phpunit/phpunit-mock-objects": "2.3.*@dev",
+                "phpunit/phpunit-mock-objects": "~2.3",
                 "sebastian/comparator": "~1.0",
                 "sebastian/diff": "~1.1",
                 "sebastian/environment": "~1.0",
@@ -733,7 +734,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2014-09-17 03:23:13"
+            "time": "2014-11-01 06:01:32"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
@@ -741,21 +742,21 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit-mock-objects.git",
-                "reference": "3d40ae857a3941ede714be45079e85f9e956b4b3"
+                "reference": "96c5b81f9842f38fe6c73ad0020306cc4862a9e3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit-mock-objects/zipball/3d40ae857a3941ede714be45079e85f9e956b4b3",
-                "reference": "3d40ae857a3941ede714be45079e85f9e956b4b3",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit-mock-objects/zipball/96c5b81f9842f38fe6c73ad0020306cc4862a9e3",
+                "reference": "96c5b81f9842f38fe6c73ad0020306cc4862a9e3",
                 "shasum": ""
             },
             "require": {
-                "doctrine/instantiator": "~1.0,>=1.0.1",
+                "doctrine/instantiator": "~1.0,>=1.0.2",
                 "php": ">=5.3.3",
                 "phpunit/php-text-template": "~1.2"
             },
             "require-dev": {
-                "phpunit/phpunit": "4.3.*@dev"
+                "phpunit/phpunit": "4.4.*@dev"
             },
             "suggest": {
                 "ext-soap": "*"
@@ -763,7 +764,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.3.x-dev"
+                    "dev-master": "2.4.x-dev"
                 }
             },
             "autoload": {
@@ -788,7 +789,7 @@
                 "mock",
                 "xunit"
             ],
-            "time": "2014-09-10 14:10:18"
+            "time": "2014-10-04 10:04:20"
         },
         {
             "name": "psr/log",
@@ -909,12 +910,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/comparator.git",
-                "reference": "e54a01c0da1b87db3c5a3c4c5277ddf331da4aef"
+                "reference": "6f67d2ae044ba17ba30573941f4ac96c4777be97"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/comparator/zipball/e54a01c0da1b87db3c5a3c4c5277ddf331da4aef",
-                "reference": "e54a01c0da1b87db3c5a3c4c5277ddf331da4aef",
+                "url": "https://api.github.com/repos/sebastianbergmann/comparator/zipball/6f67d2ae044ba17ba30573941f4ac96c4777be97",
+                "reference": "6f67d2ae044ba17ba30573941f4ac96c4777be97",
                 "shasum": ""
             },
             "require": {
@@ -928,7 +929,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.0.x-dev"
+                    "dev-master": "1.1.x-dev"
                 }
             },
             "autoload": {
@@ -942,11 +943,6 @@
             ],
             "authors": [
                 {
-                    "name": "Sebastian Bergmann",
-                    "email": "sebastian@phpunit.de",
-                    "role": "lead"
-                },
-                {
                     "name": "Jeff Welch",
                     "email": "whatthejeff@gmail.com"
                 },
@@ -957,6 +953,10 @@
                 {
                     "name": "Bernhard Schussek",
                     "email": "bschussek@2bepublished.at"
+                },
+                {
+                    "name": "Sebastian Bergmann",
+                    "email": "sebastian@phpunit.de"
                 }
             ],
             "description": "Provides the functionality to compare PHP values for equality",
@@ -966,7 +966,7 @@
                 "compare",
                 "equality"
             ],
-            "time": "2014-05-11 23:00:21"
+            "time": "2014-10-21 10:04:18"
         },
         {
             "name": "sebastian/diff",
@@ -974,12 +974,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/diff.git",
-                "reference": "5843509fed39dee4b356a306401e9dd1a931fec7"
+                "reference": "3e22c89be2e1cddf7db89699cb23a9159df12e0c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/diff/zipball/5843509fed39dee4b356a306401e9dd1a931fec7",
-                "reference": "5843509fed39dee4b356a306401e9dd1a931fec7",
+                "url": "https://api.github.com/repos/sebastianbergmann/diff/zipball/3e22c89be2e1cddf7db89699cb23a9159df12e0c",
+                "reference": "3e22c89be2e1cddf7db89699cb23a9159df12e0c",
                 "shasum": ""
             },
             "require": {
@@ -1018,7 +1018,7 @@
             "keywords": [
                 "diff"
             ],
-            "time": "2014-08-15 10:29:00"
+            "time": "2014-11-05 15:28:21"
         },
         {
             "name": "sebastian/environment",
@@ -1026,24 +1026,24 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/environment.git",
-                "reference": "10c7467da0622f7848cc5cadc0828c3359254df4"
+                "reference": "6e6c71d918088c251b181ba8b3088af4ac336dd7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/environment/zipball/10c7467da0622f7848cc5cadc0828c3359254df4",
-                "reference": "10c7467da0622f7848cc5cadc0828c3359254df4",
+                "url": "https://api.github.com/repos/sebastianbergmann/environment/zipball/6e6c71d918088c251b181ba8b3088af4ac336dd7",
+                "reference": "6e6c71d918088c251b181ba8b3088af4ac336dd7",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3"
             },
             "require-dev": {
-                "phpunit/phpunit": "~4.0"
+                "phpunit/phpunit": "~4.3"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.0.x-dev"
+                    "dev-master": "1.2.x-dev"
                 }
             },
             "autoload": {
@@ -1058,8 +1058,7 @@
             "authors": [
                 {
                     "name": "Sebastian Bergmann",
-                    "email": "sebastian@phpunit.de",
-                    "role": "lead"
+                    "email": "sebastian@phpunit.de"
                 }
             ],
             "description": "Provides functionality to handle HHVM/PHP environments",
@@ -1069,7 +1068,7 @@
                 "environment",
                 "hhvm"
             ],
-            "time": "2014-05-04 17:56:05"
+            "time": "2014-10-25 08:00:45"
         },
         {
             "name": "sebastian/exporter",
@@ -1178,12 +1177,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Config.git",
-                "reference": "b9f7877e02682cb081585c58baf3b9760865b98e"
+                "reference": "6b6a1dc0df014fedc00fdef04b8ccc666f34fcfa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Config/zipball/b9f7877e02682cb081585c58baf3b9760865b98e",
-                "reference": "b9f7877e02682cb081585c58baf3b9760865b98e",
+                "url": "https://api.github.com/repos/symfony/Config/zipball/6b6a1dc0df014fedc00fdef04b8ccc666f34fcfa",
+                "reference": "6b6a1dc0df014fedc00fdef04b8ccc666f34fcfa",
                 "shasum": ""
             },
             "require": {
@@ -1217,7 +1216,7 @@
             ],
             "description": "Symfony Config Component",
             "homepage": "http://symfony.com",
-            "time": "2014-09-25 18:11:49"
+            "time": "2014-11-03 03:55:50"
         },
         {
             "name": "symfony/console",
@@ -1226,12 +1225,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Console.git",
-                "reference": "7049924cf0b7f350e5a099ea988e713ebf7590fe"
+                "reference": "2fc3644d2e10e14935b2c79e57a5185281eb1eb7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Console/zipball/7049924cf0b7f350e5a099ea988e713ebf7590fe",
-                "reference": "7049924cf0b7f350e5a099ea988e713ebf7590fe",
+                "url": "https://api.github.com/repos/symfony/Console/zipball/2fc3644d2e10e14935b2c79e57a5185281eb1eb7",
+                "reference": "2fc3644d2e10e14935b2c79e57a5185281eb1eb7",
                 "shasum": ""
             },
             "require": {
@@ -1274,7 +1273,7 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "http://symfony.com",
-            "time": "2014-10-01 05:53:11"
+            "time": "2014-11-03 03:55:50"
         },
         {
             "name": "symfony/event-dispatcher",
@@ -1283,12 +1282,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/EventDispatcher.git",
-                "reference": "93d237c3da7565a9ad2b4b6a74af73f4e3c0c305"
+                "reference": "dcf345d5ed96bc6c3b4521c1989670d2c9e5014e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/EventDispatcher/zipball/93d237c3da7565a9ad2b4b6a74af73f4e3c0c305",
-                "reference": "93d237c3da7565a9ad2b4b6a74af73f4e3c0c305",
+                "url": "https://api.github.com/repos/symfony/EventDispatcher/zipball/dcf345d5ed96bc6c3b4521c1989670d2c9e5014e",
+                "reference": "dcf345d5ed96bc6c3b4521c1989670d2c9e5014e",
                 "shasum": ""
             },
             "require": {
@@ -1332,7 +1331,7 @@
             ],
             "description": "Symfony EventDispatcher Component",
             "homepage": "http://symfony.com",
-            "time": "2014-10-01 05:53:11"
+            "time": "2014-11-03 03:55:50"
         },
         {
             "name": "symfony/filesystem",
@@ -1429,9 +1428,7 @@
             "time": "2014-09-22 11:59:59"
         }
     ],
-    "aliases": [
-
-    ],
+    "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
         "namelesscoder/gizzle-git-plugins": 20,
@@ -1439,10 +1436,6 @@
         "satooshi/php-coveralls": 20
     },
     "prefer-stable": false,
-    "platform": [
-
-    ],
-    "platform-dev": [
-
-    ]
+    "platform": [],
+    "platform-dev": []
 }
