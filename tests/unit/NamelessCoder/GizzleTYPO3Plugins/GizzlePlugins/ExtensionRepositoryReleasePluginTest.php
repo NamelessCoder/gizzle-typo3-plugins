@@ -93,6 +93,14 @@ class ExtensionRepositoryReleasePluginTest extends \PHPUnit_Framework_TestCase {
 		$this->assertInstanceOf('NamelessCoder\\GizzleGitPlugins\\GizzlePlugins\\ClonePlugin', $result);
 	}
 
+	public function testGetGitCheckoutPluginReturnsCheckoutPluginInstance() {
+		$plugin = new ExtensionRepositoryReleasePlugin();
+		$method = new \ReflectionMethod($plugin, 'getGitCheckoutPlugin');
+		$method->setAccessible(TRUE);
+		$result = $method->invoke($plugin);
+		$this->assertInstanceOf('NamelessCoder\\GizzleGitPlugins\\GizzlePlugins\\CheckoutPlugin', $result);
+	}
+
 	public function testProcess() {
 		vfsStreamWrapper::register();
 		vfsStreamWrapper::setRoot(new vfsStreamDirectory('temp', 0777));
