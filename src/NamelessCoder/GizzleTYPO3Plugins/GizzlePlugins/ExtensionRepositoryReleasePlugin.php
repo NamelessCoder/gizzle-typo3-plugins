@@ -20,7 +20,7 @@ class ExtensionRepositoryReleasePlugin extends AbstractPlugin implements PluginI
 	const OPTION_COMMENT = 'comment';
 	const OPTION_URL = 'url';
 	const OPTION_REMOVEBUILD = 'removeBuild';
-	const DEFAULT_COMMENT = 'Automatic release built from Github branch %s. See %s for change log.';
+	const DEFAULT_COMMENT = 'Automatic release built from Github. See %s for change log.';
 	const CREDENTIALS_FILE = '.typo3credentials';
 
 	/**
