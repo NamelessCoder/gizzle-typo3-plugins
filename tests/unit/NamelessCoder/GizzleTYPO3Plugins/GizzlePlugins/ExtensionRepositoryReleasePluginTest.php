@@ -120,7 +120,6 @@ class ExtensionRepositoryReleasePluginTest extends \PHPUnit_Framework_TestCase {
 		$clone = $this->getMock('NamelessCoder\\GizzleGitPlugins\\GizzlePlugins\\ClonePlugin', array('initialize', 'process'));
 		$clone->expects($this->once())->method('initialize')->with(array(
 			ClonePlugin::OPTION_DIRECTORY => $settings[ExtensionRepositoryReleasePlugin::OPTION_DIRECTORY] . '/123/repository',
-			ClonePlugin::OPTION_BRANCH => '1.1.1',
 			ClonePlugin::OPTION_DEPTH => 1
 		));
 		$clone->expects($this->once())->method('process')->with($payload);

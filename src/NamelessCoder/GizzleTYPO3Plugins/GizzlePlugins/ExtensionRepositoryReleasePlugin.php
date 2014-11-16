@@ -65,7 +65,6 @@ class ExtensionRepositoryReleasePlugin extends AbstractPlugin implements PluginI
 		$clone = $this->getGitClonePlugin();
 		$clone->initialize(array(
 			ClonePlugin::OPTION_DIRECTORY => $directory,
-			ClonePlugin::OPTION_BRANCH => $tag,
 			ClonePlugin::OPTION_DEPTH => 1
 		));
 		$this->createWorkingDirectory($directory);
