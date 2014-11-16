@@ -99,7 +99,6 @@ class ExtensionRepositoryReleasePluginTest extends \PHPUnit_Framework_TestCase {
 		$settings = array(
 			ExtensionRepositoryReleasePlugin::OPTION_DIRECTORY => vfsStream::url('temp'),
 			ExtensionRepositoryReleasePlugin::OPTION_URL => 'url',
-			ExtensionRepositoryReleasePlugin::OPTION_BRANCH => 'master',
 			ExtensionRepositoryReleasePlugin::OPTION_COMMENT => 'comment',
 			ExtensionRepositoryReleasePlugin::OPTION_REMOVEBUILD => TRUE
 		);
@@ -160,9 +159,6 @@ class ExtensionRepositoryReleasePluginTest extends \PHPUnit_Framework_TestCase {
 		$payload->expects($this->any())->method('getRepository')->will($this->returnValue($repository));
 		$payload->expects($this->any())->method('getRef')->will($this->returnValue($payloadRef));
 		$plugin = new ExtensionRepositoryReleasePlugin();
-		$plugin->initialize(array(
-			ExtensionRepositoryReleasePlugin::OPTION_BRANCH => $branch
-		));
 		$this->assertEquals($expected, $plugin->trigger($payload));
 	}
 

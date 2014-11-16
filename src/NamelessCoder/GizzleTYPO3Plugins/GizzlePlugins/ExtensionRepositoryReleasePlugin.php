@@ -18,7 +18,6 @@ class ExtensionRepositoryReleasePlugin extends AbstractPlugin implements PluginI
 	const OPTION_CREDENTIALSFILE = 'credentialsFile';
 	const OPTION_DIRECTORY = 'directory';
 	const OPTION_COMMENT = 'comment';
-	const OPTION_BRANCH = 'branch';
 	const OPTION_URL = 'url';
 	const OPTION_REMOVEBUILD = 'removeBuild';
 	const DEFAULT_COMMENT = 'Automatic release built from Github branch %s. See %s for change log.';
@@ -47,7 +46,6 @@ class ExtensionRepositoryReleasePlugin extends AbstractPlugin implements PluginI
 		$tag = substr($payload->getRef(), 10);
 
 		// additional settings not requiring validation.
-		$branch = $this->getSettingValue(self::OPTION_BRANCH, $payload->getRepository()->getMasterBranch());
 		$url = $this->getSettingValue(self::OPTION_URL, $payload->getRepository()->getUrl());
 		$comment = $this->getSettingValue(self::OPTION_COMMENT, self::DEFAULT_COMMENT);
 
