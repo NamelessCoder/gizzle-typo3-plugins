@@ -68,7 +68,7 @@ class ExtensionRepositoryReleasePlugin extends AbstractPlugin implements PluginI
 		$this->createWorkingDirectory($directory);
 		$this->validateDirectory($directory);
 		$clone->process($payload);
-		$comment = sprintf($comment, $tag, $url);
+		$comment = sprintf($comment, $url);
 
 		// a large, properly formatted data file.
 		$output = $this->getUploader()->upload($directory, $username, $password, $comment);
