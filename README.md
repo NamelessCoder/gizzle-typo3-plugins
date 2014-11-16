@@ -16,7 +16,6 @@ NamelessCoder\GizzleTYPO3Plugins:
     enabled: true
     directory: /working/directory/path/
     credentialsFile: /path/to/.typo3credentials/if/not/in/project/root
-    branch: master
     comment: A comment which supports %s to insert branch name and another %s to insert a changelog URL.
     url: http://my-custom-url.foo/if-not-set-then-github-repository-page.html
     removeBuild: true
