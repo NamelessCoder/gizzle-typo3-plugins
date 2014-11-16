@@ -22,13 +22,16 @@ class ExtensionRepositoryReleasePlugin extends AbstractPlugin implements PluginI
 	const OPTION_REMOVEBUILD = 'removeBuild';
 	const DEFAULT_COMMENT = 'Automatic release built from Github. See %s for change log.';
 	const CREDENTIALS_FILE = '.typo3credentials';
+	const PATTERN_EXTENSION_FOLDER = '/[^a-z0-9_]/';
+	const PATTERN_TAG_HEAD = 'refs/tags/';
+	const TEMPORARY_FOLDER_PERMISSIONS = 0755;
 
 	/**
 	 * @param Payload $payload
 	 * @return boolean
 	 */
 	public function trigger(Payload $payload) {
-		return 0 === strpos($payload->getRef(), 'refs/tags/');
+		return 0 === strpos($payload->getRef(), self::PATTERN_TAG_HEAD);
 	}
 
 	/**
@@ -43,7 +46,7 @@ class ExtensionRepositoryReleasePlugin extends AbstractPlugin implements PluginI
 	 */
 	public function process(Payload $payload) {
 		$sha1 = $payload->getHead()->getId();
-		$tag = substr($payload->getRef(), 10);
+		$tag = substr($payload->getRef(), strlen(self::PATTERN_TAG_HEAD));
 
 		// additional settings not requiring validation.
 		$url = $this->getSettingValue(self::OPTION_URL, $payload->getRepository()->getUrl());
@@ -91,7 +94,7 @@ class ExtensionRepositoryReleasePlugin extends AbstractPlugin implements PluginI
 	 * @param string $directory
 	 */
 	protected function createWorkingDirectory($directory) {
-		mkdir($directory, 0755, TRUE);
+		mkdir($directory, self::TEMPORARY_FOLDER_PERMISSIONS, TRUE);
 	}
 
 	/**
@@ -109,7 +112,7 @@ class ExtensionRepositoryReleasePlugin extends AbstractPlugin implements PluginI
 	protected function validateDirectory($directory) {
 		$directoryName = pathinfo($directory, PATHINFO_FILENAME);
 		$matches = array();
-		if (0 < preg_match('/[^a-z0-9_]/', $directoryName, $matches)) {
+		if (0 < preg_match(self::PATTERN_EXTENSION_FOLDER, $directoryName, $matches)) {
 			throw new \RuntimeException('Directory "' . $directoryName . '" has a name indicating it is not a TYPO3 extension. ' .
 				'Expected folder name should contain only a-z, 0-9 and underscores.', 1412208381);
 		}
