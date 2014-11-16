@@ -4,6 +4,7 @@ namespace NamelessCoder\GizzleTYPO3Plugins\GizzlePlugins;
 use NamelessCoder\Gizzle\AbstractPlugin;
 use NamelessCoder\Gizzle\Payload;
 use NamelessCoder\Gizzle\PluginInterface;
+use NamelessCoder\GizzleGitPlugins\GizzlePlugins\CheckoutPlugin;
 use NamelessCoder\GizzleGitPlugins\GizzlePlugins\ClonePlugin;
 use NamelessCoder\GizzleGitPlugins\GizzlePlugins\PullPlugin;
 use NamelessCoder\TYPO3RepositoryClient\ExtensionUploadPacker;
@@ -65,15 +66,22 @@ class ExtensionRepositoryReleasePlugin extends AbstractPlugin implements PluginI
 		$clone->initialize(array(
 			ClonePlugin::OPTION_DIRECTORY => $directory,
 			ClonePlugin::OPTION_BRANCH => $tag,
-			ClonePlugin::OPTION_DEPTH => 1,
-			ClonePlugin::OPTION_SINGLE => TRUE
+			ClonePlugin::OPTION_DEPTH => 1
 		));
 		$this->createWorkingDirectory($directory);
 		$this->validateDirectory($directory);
 		$clone->process($payload);
-		$comment = sprintf($comment, $url);
+
+		// checking out the proper tag
+		$checkout = $this->getGitCheckoutPlugin();
+		$checkout->initialize(array(
+			CheckoutPlugin::OPTION_DIRECTORY => $directory,
+			CheckoutPlugin::OPTION_BRANCH => $tag
+		));
+		$checkout->process($payload);
 
 		// a large, properly formatted data file.
+		$comment = sprintf($comment, $url);
 		$output = $this->getUploader()->upload($directory, $username, $password, $comment);
 
 		// cleanup and messages
@@ -88,6 +96,13 @@ class ExtensionRepositoryReleasePlugin extends AbstractPlugin implements PluginI
 	 */
 	protected function getGitClonePlugin() {
 		return new ClonePlugin();
+	}
+
+	/**
+	 * @return CheckoutPlugin
+	 */
+	protected function getGitCheckoutPlugin() {
+		return new CheckoutPlugin();
 	}
 
 	/**
