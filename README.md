@@ -22,3 +22,12 @@ NamelessCoder\GizzleTYPO3Plugins:
     removeBuild: true
 
 ```
+
+TYPO3 Extension Repository Credentials
+--------------------------------------
+
+The `ExtensionRepositoryReleasePlugin` requires a special `.typo3credentials` file placed alongside your `.secret` file (in the
+ root project folder, not inside the `web/` directory). The contents of this file must be `username:password` where the
+ `username` must be your typo3.org username and `password` of course your typo3.org password, in cleartext. Since this file is
+ sensitive information please make sure you don't commit it to Github and inadvertently leak your login. Treat it with the same
+  or greater care and respect that you would your `.secret` file!
