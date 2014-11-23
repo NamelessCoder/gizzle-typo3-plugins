@@ -1,4 +1,4 @@
-<phpunit bootstrap="./bootstrap.php"
+<phpunit bootstrap="./tests/bootstrap.php"
          backupGlobals="false"
          backupStaticAttributes="false"
          colors="true"
@@ -14,14 +14,14 @@
          verbose="false">
     <testsuites>
         <testsuite name="gizzle-typo3-plugins">
-            <directory>.</directory>
+            <directory>tests</directory>
         </testsuite>
     </testsuites>
     <filter>
         <whitelist>
             <addUncoveredFilesFromWhitelist>true</addUncoveredFilesFromWhitelist>
             <processUncoveredFilesFromWhitelist>true</processUncoveredFilesFromWhitelist>
-            <directory>../src/NamelessCoder/GizzleTYPO3Plugins/</directory>
+            <directory>src</directory>
         </whitelist>
     </filter>
 </phpunit>
