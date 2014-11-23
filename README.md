@@ -1,7 +1,7 @@
 Gizzle TYPO3 Plugins
 ====================
 
-[![Build Status](https://travis-ci.org/NamelessCoder/gizzle-typo3-plugins.svg?branch=master)](https://travis-ci.org/NamelessCoder/gizzle-typo3-plugins) [![Coverage Status](https://img.shields.io/coveralls/NamelessCoder/gizzle-typo3-plugins.svg)](https://coveralls.io/r/NamelessCoder/gizzle-typo3-plugins)
+[![Build Status](http://jenkins.fluidtypo3.org/buildStatus/icon?job=gizzle-typo3-plugins)](http://jenkins.fluidtypo3.org/job/gizzle-typo3-plugins/) [![Coverage Status](https://img.shields.io/coveralls/NamelessCoder/gizzle-typo3-plugins.svg)](https://coveralls.io/r/NamelessCoder/gizzle-typo3-plugins)
 
 Plugins for [Gizzle](https://github.com/NamelessCoder/gizzle) to perform various tasks related to the TYPO3 software family.
 
