@@ -1,7 +1,7 @@
 Gizzle TYPO3 Plugins
 ====================
 
-[![Build Status](https://jenkins.fluidtypo3.org/buildStatus/icon?job=gizzle-typo3-plugins)](https://jenkins.fluidtypo3.org/job/gizzle-typo3-plugins/) [![Coverage Status](https://img.shields.io/coveralls/NamelessCoder/gizzle-typo3-plugins.svg)](https://coveralls.io/r/NamelessCoder/gizzle-typo3-plugins) [![Latest Stable Version](https://img.shields.io/packagist/v/NamelessCoder/gizzle-typo3-plugins.svg?style=flat-square)](https://packagist.org/packages/namelesscoder/gizzle-typo3-plugins) [![Total Downloads](https://img.shields.io/packagist/dt/NamelessCoder/gizzle-typo3-plugins.svg?style=flat-square)](https://packagist.org/packages/namelesscoder/gizzle-typo3-plugins)
+[![Build Status](https://img.shields.io/jenkins/s/https/jenkins.fluidtypo3.org/gizzle-typo3-plugins.svg?style=flat-square)](https://jenkins.fluidtypo3.org/job/gizzle-typo3-plugins/) [![Coverage Status](https://img.shields.io/coveralls/NamelessCoder/gizzle-typo3-plugins.svg?style=flat-square)](https://coveralls.io/r/NamelessCoder/gizzle-typo3-plugins) [![Latest Stable Version](https://img.shields.io/packagist/v/NamelessCoder/gizzle-typo3-plugins.svg?style=flat-square)](https://packagist.org/packages/namelesscoder/gizzle-typo3-plugins) [![Total Downloads](https://img.shields.io/packagist/dt/NamelessCoder/gizzle-typo3-plugins.svg?style=flat-square)](https://packagist.org/packages/namelesscoder/gizzle-typo3-plugins)
 
 Plugins for [Gizzle](https://github.com/NamelessCoder/gizzle) to perform various tasks related to the TYPO3 software family.
 
