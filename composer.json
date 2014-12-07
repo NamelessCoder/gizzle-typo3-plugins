@@ -15,14 +15,13 @@
 			"NamelessCoder\\GizzleTYPO3Plugins\\": "src/NamelessCoder/GizzleTYPO3Plugins/"
 		}
 	},
-    "minimum-stability": "dev",
 	"require": {
-		"namelesscoder/gizzle": "1.2.*",
-		"namelesscoder/gizzle-git-plugins": "dev-master",
-		"namelesscoder/typo3-repository-client": "dev-master"
+		"namelesscoder/gizzle": "@stable",
+		"namelesscoder/gizzle-git-plugins": "@stable",
+		"namelesscoder/typo3-repository-client": "@stable"
 	},
 	"require-dev": {
-		"satooshi/php-coveralls": "dev-master",
+		"satooshi/php-coveralls": "*",
 		"mikey179/vfsStream": "~1.3.0",
 		"phpunit/phpunit": "4.3.*"
 	}
