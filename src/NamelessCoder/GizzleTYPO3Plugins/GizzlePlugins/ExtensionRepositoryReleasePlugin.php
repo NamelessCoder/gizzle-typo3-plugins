@@ -20,7 +20,6 @@ class ExtensionRepositoryReleasePlugin extends AbstractPlugin implements PluginI
 	const OPTION_COMMENT = 'comment';
 	const OPTION_URL = 'url';
 	const OPTION_REMOVEBUILD = 'removeBuild';
-	const DEFAULT_COMMENT = 'Automatic release built from Github. See %s for change log.';
 	const CREDENTIALS_FILE = '.typo3credentials';
 	const PATTERN_EXTENSION_FOLDER = '/[^a-z0-9_]/';
 	const PATTERN_TAG_HEAD = 'refs/tags/';
@@ -50,7 +49,8 @@ class ExtensionRepositoryReleasePlugin extends AbstractPlugin implements PluginI
 
 		// additional settings not requiring validation.
 		$url = $this->getSettingValue(self::OPTION_URL, $payload->getRepository()->getUrl());
-		$comment = $this->getSettingValue(self::OPTION_COMMENT, self::DEFAULT_COMMENT);
+		// look for an upload comment in settings; if not found there, use Payload HEAD's message body
+		$comment = $this->getSettingValue(self::OPTION_COMMENT, $payload->getHead()->getMessage());
 
 		// validation: credentials file and local directory path.
 		$directory = $this->getSettingValue(self::OPTION_DIRECTORY);

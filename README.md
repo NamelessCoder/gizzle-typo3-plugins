@@ -16,7 +16,7 @@ NamelessCoder\GizzleTYPO3Plugins:
     enabled: true
     directory: /working/directory/path/
     credentialsFile: /path/to/.typo3credentials/if/not/in/project/root
-    comment: A comment which supports an %s to insert a changelog URL.
+    comment: A short comment text describing the upload. Taken from Payload HEAD's message body if not configured.
     url: http://my-custom-url.foo/if-not-set-then-github-repository-page.html
     removeBuild: true
 
