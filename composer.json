@@ -10,9 +10,13 @@
     ],
 	"autoload": {
 		"psr-4": {
-			"NamelessCoder\\GizzleTYPO3Plugins\\Tests\\Fixtures\\": "tests/fixtures/NamelessCoder/GizzleTYPO3Plugins/",
-			"NamelessCoder\\GizzleTYPO3Plugins\\Tests\\Unit\\": "tests/unit/NamelessCoder/GizzleTYPO3Plugins/",
 			"NamelessCoder\\GizzleTYPO3Plugins\\": "src/NamelessCoder/GizzleTYPO3Plugins/"
+		}
+	},
+	"autoload-dev": {
+		"psr-4": {
+			"NamelessCoder\\GizzleTYPO3Plugins\\Tests\\Fixtures\\": "tests/fixtures/NamelessCoder/GizzleTYPO3Plugins/",
+			"NamelessCoder\\GizzleTYPO3Plugins\\Tests\\Unit\\": "tests/unit/NamelessCoder/GizzleTYPO3Plugins/"
 		}
 	},
 	"require": {
@@ -22,7 +26,7 @@
 	},
 	"require-dev": {
 		"satooshi/php-coveralls": "*",
-		"mikey179/vfsStream": "~1.3.0",
-		"phpunit/phpunit": "4.3.*"
+		"mikey179/vfsStream": "*",
+		"phpunit/phpunit": "*"
 	}
 }
