@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "6069678fe976cc3e19faf44f6bfd3cb4",
+    "hash": "c10dae3065afeea782e291bbfaf31e39",
     "packages": [
         {
             "name": "milo/github-api",
@@ -51,16 +51,16 @@
         },
         {
             "name": "namelesscoder/gizzle",
-            "version": "1.3.0",
+            "version": "1.3.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/NamelessCoder/gizzle.git",
-                "reference": "4136847ecaf89b4fdd3728405dfbec77a277f8db"
+                "reference": "e80edc09aa25e4eea913e12d698d47957959c8ab"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/NamelessCoder/gizzle/zipball/4136847ecaf89b4fdd3728405dfbec77a277f8db",
-                "reference": "4136847ecaf89b4fdd3728405dfbec77a277f8db",
+                "url": "https://api.github.com/repos/NamelessCoder/gizzle/zipball/e80edc09aa25e4eea913e12d698d47957959c8ab",
+                "reference": "e80edc09aa25e4eea913e12d698d47957959c8ab",
                 "shasum": ""
             },
             "require": {
@@ -74,9 +74,7 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "NamelessCoder\\Gizzle\\Tests\\Fixtures\\": "tests/fixtures/NamelessCoder/Gizzle/",
-                    "NamelessCoder\\Gizzle\\Tests\\Unit\\": "tests/unit/NamelessCoder/Gizzle/",
-                    "NamelessCoder\\Gizzle\\": "src/NamelessCoder/Gizzle/"
+                    "NamelessCoder\\Gizzle\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -98,20 +96,20 @@
                 "plugin",
                 "webhook"
             ],
-            "time": "2015-01-06 00:23:59"
+            "time": "2015-02-28 16:05:12"
         },
         {
             "name": "namelesscoder/gizzle-git-plugins",
-            "version": "0.1.0",
+            "version": "0.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/NamelessCoder/gizzle-git-plugins.git",
-                "reference": "32e53d0a95a7d0300dddafc45573a49606bfc45d"
+                "reference": "7732b4078ed6d7830a1d8fff0dfcfcbb9aa62dbc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/NamelessCoder/gizzle-git-plugins/zipball/32e53d0a95a7d0300dddafc45573a49606bfc45d",
-                "reference": "32e53d0a95a7d0300dddafc45573a49606bfc45d",
+                "url": "https://api.github.com/repos/NamelessCoder/gizzle-git-plugins/zipball/7732b4078ed6d7830a1d8fff0dfcfcbb9aa62dbc",
+                "reference": "7732b4078ed6d7830a1d8fff0dfcfcbb9aa62dbc",
                 "shasum": ""
             },
             "require": {
@@ -124,9 +122,7 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "NamelessCoder\\GizzleGitPlugins\\Tests\\Fixtures\\": "tests/fixtures/NamelessCoder/GizzleGitPlugins/",
-                    "NamelessCoder\\GizzleGitPlugins\\Tests\\Unit\\": "tests/unit/NamelessCoder/GizzleGitPlugins/",
-                    "NamelessCoder\\GizzleGitPlugins\\": "src/NamelessCoder/GizzleGitPlugins/"
+                    "NamelessCoder\\GizzleGitPlugins\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -140,20 +136,20 @@
                 }
             ],
             "description": "Gizzle plugins for running Git operations",
-            "time": "2014-11-30 23:22:43"
+            "time": "2015-02-28 16:10:06"
         },
         {
             "name": "namelesscoder/typo3-repository-client",
-            "version": "1.0.2",
+            "version": "1.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/NamelessCoder/typo3-repository-client.git",
-                "reference": "65f5827b73ea5a82b0a7c306c5a0dda5095a0e31"
+                "reference": "0b8d42d50e5c96e48ea6cde28fce918c8bfa6bb0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/NamelessCoder/typo3-repository-client/zipball/65f5827b73ea5a82b0a7c306c5a0dda5095a0e31",
-                "reference": "65f5827b73ea5a82b0a7c306c5a0dda5095a0e31",
+                "url": "https://api.github.com/repos/NamelessCoder/typo3-repository-client/zipball/0b8d42d50e5c96e48ea6cde28fce918c8bfa6bb0",
+                "reference": "0b8d42d50e5c96e48ea6cde28fce918c8bfa6bb0",
                 "shasum": ""
             },
             "require-dev": {
@@ -169,9 +165,7 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "NamelessCoder\\TYPO3RepositoryClient\\Tests\\Fixtures\\": "tests/fixtures/NamelessCoder/TYPO3RepositoryClient/",
-                    "NamelessCoder\\TYPO3RepositoryClient\\Tests\\Unit\\": "tests/unit/NamelessCoder/TYPO3RepositoryClient/",
-                    "NamelessCoder\\TYPO3RepositoryClient\\": "src/NamelessCoder/TYPO3RepositoryClient/"
+                    "NamelessCoder\\TYPO3RepositoryClient\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -185,7 +179,7 @@
                 }
             ],
             "description": "Client for interacting with the official TYPO3 Extension Repository (TER). Contains API and CLI scripts.",
-            "time": "2014-12-08 00:41:33"
+            "time": "2015-02-28 16:14:49"
         },
         {
             "name": "symfony/yaml",
