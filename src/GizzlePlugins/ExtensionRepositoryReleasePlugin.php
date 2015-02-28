@@ -55,7 +55,7 @@ class ExtensionRepositoryReleasePlugin extends AbstractPlugin implements PluginI
 		// validation: credentials file and local directory path.
 		$directory = $this->getSettingValue(self::OPTION_DIRECTORY);
 		$directory = rtrim($directory, '/') . '/';
-		$directory .= $sha1 . '/' . $payload->getRepository()->getName();
+		$directory .= $sha1 . '/' . $this->getWorkingDirectoryName($payload);
 		$credentialsFile = $this->getSettingValue(self::OPTION_CREDENTIALSFILE, GIZZLE_HOME . self::CREDENTIALS_FILE);
 		$this->validateCredentialsFile($credentialsFile);
 		list ($username, $password) = $this->readUploadCredentials($credentialsFile);
@@ -81,6 +81,14 @@ class ExtensionRepositoryReleasePlugin extends AbstractPlugin implements PluginI
 			$this->removeWorkingDirectory($this->getSettingValue(self::OPTION_DIRECTORY), $sha1);
 		}
 		$payload->getResponse()->addOutputFromPlugin($this, $output);
+	}
+
+	/**
+	 * @param Payload $payload
+	 * @return string
+	 */
+	protected function getWorkingDirectoryName(Payload $payload) {
+		return $payload->getRepository()->getName();
 	}
 
 	/**
