@@ -4,6 +4,7 @@ namespace NamelessCoder\GizzleTYPO3Plugins\GizzlePlugins;
 use NamelessCoder\Gizzle\AbstractPlugin;
 use NamelessCoder\Gizzle\Payload;
 use NamelessCoder\Gizzle\PluginInterface;
+use NamelessCoder\Gizzle\Repository;
 use NamelessCoder\GizzleGitPlugins\GizzlePlugins\ClonePlugin;
 use NamelessCoder\GizzleGitPlugins\GizzlePlugins\PullPlugin;
 use NamelessCoder\TYPO3RepositoryClient\ExtensionUploadPacker;
@@ -48,7 +49,7 @@ class ExtensionRepositoryReleasePlugin extends AbstractPlugin implements PluginI
 		$tag = substr($payload->getRef(), strlen(self::PATTERN_TAG_HEAD));
 
 		// additional settings not requiring validation.
-		$url = $this->getSettingValue(self::OPTION_URL, $payload->getRepository()->getUrl());
+		$url = $this->getSettingValue(self::OPTION_URL, $payload->getRepository()->resolveApiUrl(Repository::API_URL_URL));
 		// look for an upload comment in settings; if not found there, use Payload HEAD's message body
 		$comment = $this->getSettingValue(self::OPTION_COMMENT, $payload->getHead()->getMessage());
 
