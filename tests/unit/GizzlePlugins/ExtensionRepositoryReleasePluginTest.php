@@ -146,6 +146,60 @@ class ExtensionRepositoryReleasePluginTest extends \PHPUnit_Framework_TestCase {
 		$plugin->process($payload);
 	}
 
+	public function testProcessRethrowsSoapFaultAsRuntimeException() {
+		vfsStreamWrapper::register();
+		vfsStreamWrapper::setRoot(new vfsStreamDirectory('temp', 0777));
+		$settings = array(
+			ExtensionRepositoryReleasePlugin::OPTION_DIRECTORY => vfsStream::url('temp'),
+			ExtensionRepositoryReleasePlugin::OPTION_URL => 'url',
+			ExtensionRepositoryReleasePlugin::OPTION_COMMENT => 'comment',
+			ExtensionRepositoryReleasePlugin::OPTION_REMOVEBUILD => TRUE
+		);
+		$plugin = $this->getMock(
+			'NamelessCoder\\GizzleTYPO3Plugins\\GizzlePlugins\\ExtensionRepositoryReleasePlugin',
+			array('validateCredentialsFile', 'getUploader', 'readUploadCredentials', 'getGitClonePlugin')
+		);
+		$payload = $this->getMock(
+			'NamelessCoder\\Gizzle\\Payload',
+			array('getRepository', 'getHead', 'getResponse', 'getRef'),
+			array(), '', FALSE
+		);
+		$repository = new Repository();
+		$repository->setMasterBranch('master');
+		$repository->setName('repository');
+		$repository->setUrl($settings[ExtensionRepositoryReleasePlugin::OPTION_URL]);
+		$head = new Commit();
+		$head->setId('123');
+		$clone = $this->getMock('NamelessCoder\\GizzleGitPlugins\\GizzlePlugins\\ClonePlugin', array('initialize', 'process'));
+		$clone->expects($this->once())->method('initialize')->with(array(
+			ClonePlugin::OPTION_DIRECTORY => $settings[ExtensionRepositoryReleasePlugin::OPTION_DIRECTORY] . '/123/repository',
+			ClonePlugin::OPTION_SINGLE => TRUE,
+			ClonePlugin::OPTION_BRANCH => '1.1.1',
+			ClonePlugin::OPTION_DEPTH => 1
+		));
+		$clone->expects($this->once())->method('process')->with($payload);
+		$response = $this->getMock('NamelessCoder\\Gizzle\\Response', array('addOutputFromPlugin'));
+		$response->expects($this->never())->method('addOutputFromPlugin');
+		$uploader = $this->getMock('NamelessCoder\\TYPO3RepositoryClient\\Uploader', array('upload'));
+		$uploader->expects($this->once())->method('upload')->with(
+			$settings[ExtensionRepositoryReleasePlugin::OPTION_DIRECTORY] . '/' . $head->getId() . '/' . $repository->getName(),
+			'username',
+			'password',
+			$settings[ExtensionRepositoryReleasePlugin::OPTION_COMMENT]
+		)->willThrowException(new \SoapFault('test', 123));
+		$payload->expects($this->any())->method('getRepository')->will($this->returnValue($repository));
+		$payload->expects($this->any())->method('getResponse')->will($this->returnValue($response));
+		$payload->expects($this->any())->method('getHead')->will($this->returnValue($head));
+		$payload->expects($this->any())->method('getRef')->will($this->returnValue('refs/tags/1.1.1'));
+		$plugin->expects($this->once())->method('getGitClonePlugin')->will($this->returnValue($clone));
+		$plugin->expects($this->once())->method('validateCredentialsFile');
+		$plugin->expects($this->once())->method('getUploader')->will($this->returnValue($uploader));
+		$plugin->expects($this->once())->method('readUploadCredentials')->will($this->returnValue(array('username', 'password')));
+		$plugin->initialize($settings);
+		$this->setExpectedException('RuntimeException');
+		$plugin->process($payload);
+	}
+
 	/**
 	 * @param $branch
 	 * @param $payloadRef

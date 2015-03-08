@@ -74,7 +74,11 @@ class ExtensionRepositoryReleasePlugin extends AbstractPlugin implements PluginI
 
 		// a large, properly formatted data file.
 		$comment = sprintf($comment, $url);
-		$output = $this->getUploader()->upload($directory, $username, $password, $comment);
+		try {
+			$output = $this->getUploader()->upload($directory, $username, $password, $comment);
+		} catch (\SoapFault $error) {
+			throw new \RuntimeException($error->getMessage(), $error->getCode());
+		}
 
 		// cleanup and messages
 		if (TRUE === (boolean) $this->getSettingValue(self::OPTION_REMOVEBUILD, FALSE)) {
