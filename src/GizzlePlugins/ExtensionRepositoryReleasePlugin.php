@@ -49,7 +49,7 @@ class ExtensionRepositoryReleasePlugin extends AbstractPlugin implements PluginI
 		$tag = substr($payload->getRef(), strlen(self::PATTERN_TAG_HEAD));
 
 		// additional settings not requiring validation.
-		$url = $this->getSettingValue(self::OPTION_URL, $payload->getRepository()->resolveApiUrl(Repository::API_URL_URL));
+		$url = $this->getSettingValue(self::OPTION_URL, $payload->getRepository()->resolveApiUrl(Repository::API_URL_CLONE));
 		// look for an upload comment in settings; if not found there, use Payload HEAD's message body
 		$comment = $this->getSettingValue(self::OPTION_COMMENT, $payload->getHead()->getMessage());
 

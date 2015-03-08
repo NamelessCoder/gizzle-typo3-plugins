@@ -98,7 +98,6 @@ class ExtensionRepositoryReleasePluginTest extends \PHPUnit_Framework_TestCase {
 		vfsStreamWrapper::setRoot(new vfsStreamDirectory('temp', 0777));
 		$settings = array(
 			ExtensionRepositoryReleasePlugin::OPTION_DIRECTORY => vfsStream::url('temp'),
-			ExtensionRepositoryReleasePlugin::OPTION_URL => 'url',
 			ExtensionRepositoryReleasePlugin::OPTION_COMMENT => 'comment',
 			ExtensionRepositoryReleasePlugin::OPTION_REMOVEBUILD => TRUE
 		);
@@ -114,7 +113,6 @@ class ExtensionRepositoryReleasePluginTest extends \PHPUnit_Framework_TestCase {
 		$repository = new Repository();
 		$repository->setMasterBranch('master');
 		$repository->setName('repository');
-		$repository->setUrl($settings[ExtensionRepositoryReleasePlugin::OPTION_URL]);
 		$head = new Commit();
 		$head->setId('123');
 		$clone = $this->getMock('NamelessCoder\\GizzleGitPlugins\\GizzlePlugins\\ClonePlugin', array('initialize', 'process'));
@@ -151,7 +149,6 @@ class ExtensionRepositoryReleasePluginTest extends \PHPUnit_Framework_TestCase {
 		vfsStreamWrapper::setRoot(new vfsStreamDirectory('temp', 0777));
 		$settings = array(
 			ExtensionRepositoryReleasePlugin::OPTION_DIRECTORY => vfsStream::url('temp'),
-			ExtensionRepositoryReleasePlugin::OPTION_URL => 'url',
 			ExtensionRepositoryReleasePlugin::OPTION_COMMENT => 'comment',
 			ExtensionRepositoryReleasePlugin::OPTION_REMOVEBUILD => TRUE
 		);
@@ -167,7 +164,6 @@ class ExtensionRepositoryReleasePluginTest extends \PHPUnit_Framework_TestCase {
 		$repository = new Repository();
 		$repository->setMasterBranch('master');
 		$repository->setName('repository');
-		$repository->setUrl($settings[ExtensionRepositoryReleasePlugin::OPTION_URL]);
 		$head = new Commit();
 		$head->setId('123');
 		$clone = $this->getMock('NamelessCoder\\GizzleGitPlugins\\GizzlePlugins\\ClonePlugin', array('initialize', 'process'));
