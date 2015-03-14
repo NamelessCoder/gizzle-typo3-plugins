@@ -117,6 +117,7 @@ class ExtensionRepositoryReleasePluginTest extends \PHPUnit_Framework_TestCase {
 		$head->setId('123');
 		$clone = $this->getMock('NamelessCoder\\GizzleGitPlugins\\GizzlePlugins\\ClonePlugin', array('initialize', 'process'));
 		$clone->expects($this->once())->method('initialize')->with(array(
+			ClonePlugin::OPTION_GITCOMMAND => ClonePlugin::DEFAULT_GITCOMMAND,
 			ClonePlugin::OPTION_DIRECTORY => $settings[ExtensionRepositoryReleasePlugin::OPTION_DIRECTORY] . '/123/repository',
 			ClonePlugin::OPTION_SINGLE => TRUE,
 			ClonePlugin::OPTION_BRANCH => '1.1.1',
@@ -168,6 +169,7 @@ class ExtensionRepositoryReleasePluginTest extends \PHPUnit_Framework_TestCase {
 		$head->setId('123');
 		$clone = $this->getMock('NamelessCoder\\GizzleGitPlugins\\GizzlePlugins\\ClonePlugin', array('initialize', 'process'));
 		$clone->expects($this->once())->method('initialize')->with(array(
+			ClonePlugin::OPTION_GITCOMMAND => ClonePlugin::DEFAULT_GITCOMMAND,
 			ClonePlugin::OPTION_DIRECTORY => $settings[ExtensionRepositoryReleasePlugin::OPTION_DIRECTORY] . '/123/repository',
 			ClonePlugin::OPTION_SINGLE => TRUE,
 			ClonePlugin::OPTION_BRANCH => '1.1.1',

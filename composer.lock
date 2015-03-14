@@ -51,16 +51,16 @@
         },
         {
             "name": "namelesscoder/gizzle",
-            "version": "1.5.2",
+            "version": "1.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/NamelessCoder/gizzle.git",
-                "reference": "60a9339a5baeb515ec232601fb4724330451e62c"
+                "reference": "c732a221f6dc0476fdcb59d57df90abc8c59a6ee"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/NamelessCoder/gizzle/zipball/60a9339a5baeb515ec232601fb4724330451e62c",
-                "reference": "60a9339a5baeb515ec232601fb4724330451e62c",
+                "url": "https://api.github.com/repos/NamelessCoder/gizzle/zipball/c732a221f6dc0476fdcb59d57df90abc8c59a6ee",
+                "reference": "c732a221f6dc0476fdcb59d57df90abc8c59a6ee",
                 "shasum": ""
             },
             "require": {
@@ -96,20 +96,20 @@
                 "plugin",
                 "webhook"
             ],
-            "time": "2015-03-08 19:59:23"
+            "time": "2015-03-14 18:27:44"
         },
         {
             "name": "namelesscoder/gizzle-git-plugins",
-            "version": "0.1.4",
+            "version": "0.1.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/NamelessCoder/gizzle-git-plugins.git",
-                "reference": "61180f3d516893eb2a8df5a051eb2862556a3c24"
+                "reference": "7c476db81b58bed7dc769866491b2adb6ddb19bb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/NamelessCoder/gizzle-git-plugins/zipball/61180f3d516893eb2a8df5a051eb2862556a3c24",
-                "reference": "61180f3d516893eb2a8df5a051eb2862556a3c24",
+                "url": "https://api.github.com/repos/NamelessCoder/gizzle-git-plugins/zipball/7c476db81b58bed7dc769866491b2adb6ddb19bb",
+                "reference": "7c476db81b58bed7dc769866491b2adb6ddb19bb",
                 "shasum": ""
             },
             "require": {
@@ -136,7 +136,7 @@
                 }
             ],
             "description": "Gizzle plugins for running Git operations",
-            "time": "2015-03-08 19:48:38"
+            "time": "2015-03-14 18:37:29"
         },
         {
             "name": "namelesscoder/typo3-repository-client",

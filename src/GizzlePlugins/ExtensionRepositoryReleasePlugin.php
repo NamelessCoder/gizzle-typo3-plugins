@@ -21,6 +21,7 @@ class ExtensionRepositoryReleasePlugin extends AbstractPlugin implements PluginI
 	const OPTION_COMMENT = 'comment';
 	const OPTION_URL = 'url';
 	const OPTION_REMOVEBUILD = 'removeBuild';
+	const OPTION_GITCOMMAND = 'gitCommand';
 	const CREDENTIALS_FILE = '.typo3credentials';
 	const PATTERN_EXTENSION_FOLDER = '/[^a-z0-9_]/';
 	const PATTERN_TAG_HEAD = 'refs/tags/';
@@ -63,12 +64,14 @@ class ExtensionRepositoryReleasePlugin extends AbstractPlugin implements PluginI
 
 		// initializing build directory and cloning source
 		$clone = $this->getGitClonePlugin();
-		$clone->initialize(array(
+		$clonePluginSettings = $this->getSubPluginSettings('\NamelessCoder\GizzleGitPlugins\GizzlePlugins\ClonePlugin', array(
+			ClonePlugin::OPTION_GITCOMMAND => $this->getSettingValue(self::OPTION_GITCOMMAND, ClonePlugin::DEFAULT_GITCOMMAND),
 			ClonePlugin::OPTION_DIRECTORY => $directory,
 			ClonePlugin::OPTION_SINGLE => TRUE,
 			ClonePlugin::OPTION_BRANCH => $tag,
 			ClonePlugin::OPTION_DEPTH => 1
 		));
+		$clone->initialize($clonePluginSettings);
 		$this->createWorkingDirectory($directory);
 		$this->validateDirectory($directory);
 		$clone->process($payload);

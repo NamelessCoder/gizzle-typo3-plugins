@@ -19,8 +19,12 @@ NamelessCoder\GizzleTYPO3Plugins:
     comment: A short comment text describing the upload. Taken from Payload HEAD's message body if not configured.
     url: http://my-custom-url.foo/if-not-set-then-github-repository-page.html
     removeBuild: true
+    gitCommand: `which git`
 
 ```
+
+Note that the plugin supports sub-plugin settings for `NamelessCoder\GizzleGitPlugins\GizzlePlugins\ClonePlugin` that can be
+used to override any defaults that `ExtensionRepositoryReleasePlugin` will use. See Gizzle documentation about sub-plugins.
 
 TYPO3 Extension Repository Credentials
 --------------------------------------
