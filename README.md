@@ -20,11 +20,17 @@ NamelessCoder\GizzleTYPO3Plugins:
     url: http://my-custom-url.foo/if-not-set-then-github-repository-page.html
     removeBuild: true
     gitCommand: `which git`
+    extensionKey: optional_underscored_extensionkey
 
 ```
 
 Note that the plugin supports sub-plugin settings for `NamelessCoder\GizzleGitPlugins\GizzlePlugins\ClonePlugin` that can be
 used to override any defaults that `ExtensionRepositoryReleasePlugin` will use. See Gizzle documentation about sub-plugins.
+
+The `extensionKey` parameter is specially supported as a `$_GET` parameter. If specified, `$_GET['extensionKey']` will overrule
+any extension key defined in settings. If neither `$_GET` nor the settings file contain an extension key, the plugin will attempt
+to use the repository's name as extension key. **If your extension key is different from the repository name you must always
+provide the extension key in URL or settings**.
 
 TYPO3 Extension Repository Credentials
 --------------------------------------
