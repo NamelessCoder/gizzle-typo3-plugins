@@ -96,9 +96,15 @@ class ExtensionRepositoryReleasePlugin extends AbstractPlugin implements PluginI
 	/**
 	 * @param Payload $payload
 	 * @return string
+	 * @throws \RuntimeException
 	 */
 	protected function getWorkingDirectoryName(Payload $payload) {
-		return $this->getSettingValue(self::OPTION_EXTENSIONKEY, $payload->getRepository()->getName());
+		$directoryName = $this->getExtensionKeyFromUrlParameter();
+		if (NULL === $directoryName) {
+			$directoryName = $this->getSettingValue(self::OPTION_EXTENSIONKEY, $payload->getRepository()->getName());
+		}
+		$this->validateExtensionKey($directoryName);
+		return $directoryName;
 	}
 
 	/**
@@ -146,11 +152,7 @@ class ExtensionRepositoryReleasePlugin extends AbstractPlugin implements PluginI
 	 */
 	protected function validateDirectory($directory) {
 		$directoryName = pathinfo($directory, PATHINFO_FILENAME);
-		$matches = array();
-		if (0 < preg_match(self::PATTERN_EXTENSION_FOLDER, $directoryName, $matches)) {
-			throw new \RuntimeException('Directory "' . $directoryName . '" has a name indicating it is not a TYPO3 extension. ' .
-				'Expected folder name should contain only a-z, 0-9 and underscores.', 1412208381);
-		}
+		$this->validateExtensionKey($directoryName);
 		if (FALSE === is_dir($directory)) {
 			throw new \RuntimeException('Directory "' . $directory . '" does not exist; cannot upload', 1412208391);
 		}
@@ -179,6 +181,28 @@ class ExtensionRepositoryReleasePlugin extends AbstractPlugin implements PluginI
 	 */
 	protected function getUploader() {
 		return new Uploader();
+	}
+
+	/**
+	 * @param string $extensionKey
+	 * @throws \RuntimeException
+	 */
+	protected function validateExtensionKey($extensionKey) {
+		if (0 < preg_match(self::PATTERN_EXTENSION_FOLDER, $extensionKey)) {
+			throw new \RuntimeException(
+				'Extension key/folder "' . $extensionKey . '" has a name indicating it is not a TYPO3 extension. ' .
+				'Expected key/folder name should contain only a-z, 0-9 and underscores.',
+				1412208381
+			);
+		}
+	}
+
+	/**
+	 * @codeCoverageIgnore
+	 * @return string|NULL
+	 */
+	protected function getExtensionKeyFromUrlParameter() {
+		return isset($_GET[self::OPTION_EXTENSIONKEY]) ? $_GET[self::OPTION_EXTENSIONKEY] : NULL;
 	}
 
 }
