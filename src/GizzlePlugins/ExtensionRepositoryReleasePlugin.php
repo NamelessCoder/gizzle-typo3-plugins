@@ -49,6 +49,7 @@ class ExtensionRepositoryReleasePlugin extends AbstractPlugin implements PluginI
 	public function process(Payload $payload) {
 		$sha1 = $payload->getHead()->getId();
 		$tag = substr($payload->getRef(), strlen(self::PATTERN_TAG_HEAD));
+		$this->validateVersionNumber($tag);
 
 		// additional settings not requiring validation.
 		$url = $this->getSettingValue(self::OPTION_URL, $payload->getRepository()->resolveApiUrl(Repository::API_URL_CLONE));
@@ -120,6 +121,23 @@ class ExtensionRepositoryReleasePlugin extends AbstractPlugin implements PluginI
 	 */
 	protected function removeWorkingDirectory($directory, $sha1) {
 		system('rm -rf ' . escapeshellarg($directory . '/' . $sha1));
+	}
+
+	/**
+	 * Validates that $version conforms to the expected TYPO3
+	 * extension versioning scheme (major.minor.bugfix).
+	 * Throws a RuntimeException if it doesn't.
+	 *
+	 * @param string $version
+	 * @throws \RuntimeException
+	 */
+	protected function validateVersionNumber($version) {
+		if (1 !== preg_match('/^[\\d]{1,2}\.[\\d]{1,2}\.[\\d]{1,2}$/i', $version)) {
+			throw new \RuntimeException(
+				'Invalid version number "' . $version . '" detected from tag, aborting upload',
+				1426360822
+			);
+		}
 	}
 
 	/**

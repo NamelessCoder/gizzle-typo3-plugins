@@ -18,6 +18,32 @@ class ExtensionRepositoryReleasePluginTest extends \PHPUnit_Framework_TestCase {
 		define('GIZZLE_HOME', '.');
 	}
 
+	/**
+	 * @dataProvider getValidateVersionTestValues
+	 * @param mixed $version
+	 */
+	public function testThrowsRuntimeExceptionOnInvalidVersionNumberInTagName($version) {
+		$plugin = new ExtensionRepositoryReleasePlugin();
+		$method = new \ReflectionMethod($plugin, 'validateVersionNumber');
+		$method->setAccessible(TRUE);
+		$this->setExpectedException('RuntimeException');
+		$method->invokeArgs($plugin, array($version));
+	}
+
+	/**
+	 * @return array
+	 */
+	public function getValidateVersionTestValues() {
+		return array(
+			array('foobar'),
+			array('f.o.b'),
+			array('-1.0.0'),
+			array('1.0.0-dev'),
+			array('test-tag'),
+			array('accidental.dotcount.match')
+		);
+	}
+
 	public function testReadCredentialsFile() {
 		vfsStreamWrapper::register();
 		vfsStreamWrapper::setRoot(new vfsStreamDirectory('temp', 0777));
