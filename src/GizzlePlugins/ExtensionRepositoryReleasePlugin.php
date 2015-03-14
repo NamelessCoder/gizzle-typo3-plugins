@@ -22,6 +22,7 @@ class ExtensionRepositoryReleasePlugin extends AbstractPlugin implements PluginI
 	const OPTION_URL = 'url';
 	const OPTION_REMOVEBUILD = 'removeBuild';
 	const OPTION_GITCOMMAND = 'gitCommand';
+	const OPTION_EXTENSIONKEY = 'extensionKey';
 	const CREDENTIALS_FILE = '.typo3credentials';
 	const PATTERN_EXTENSION_FOLDER = '/[^a-z0-9_]/';
 	const PATTERN_TAG_HEAD = 'refs/tags/';
@@ -96,7 +97,7 @@ class ExtensionRepositoryReleasePlugin extends AbstractPlugin implements PluginI
 	 * @return string
 	 */
 	protected function getWorkingDirectoryName(Payload $payload) {
-		return $payload->getRepository()->getName();
+		return $this->getSettingValue(self::OPTION_EXTENSIONKEY, $payload->getRepository()->getName());
 	}
 
 	/**
